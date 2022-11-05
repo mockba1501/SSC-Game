@@ -6,49 +6,44 @@ using UnityEngine.Tilemaps;
 
 public class GridBuilding : MonoBehaviour
 {
-
-
     public static GridBuilding gridBuilding;
     private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
 
     public GridLayout gridLayout;
-    public Tilemap mainTilemap;
-    public Tilemap tempTilemap;
+    public Tilemap buildingsTilemap;
+    public Tilemap placementIndicatorTilemap;
 
-    private Building temp;
-    private Vector3 prevPos;
-    private BoundsInt prevArea;
+    private Building currentBuilding;
+    private BoundsInt prevBuildingArea;
+    public GameObject buildingToBuild;
 
-    public GameObject testBuilding;
+    public Tile freeTile;
+    public Tile occupiedTile;
+    public enum TileType { FreeIndicator, OccupiedIndicator, Empty}
 
-    public Tile buildingAreaTile;
-    public Tile free;
-    public Tile occupied;
 
 
     public void Awake(){
         gridBuilding = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         tileBases.Add(TileType.Empty, null);
-        tileBases.Add(TileType.BuildingArea, buildingAreaTile);
-        tileBases.Add(TileType.FreeIndicator, free);
-        tileBases.Add(TileType.OccupiedIndicator, occupied);
+        tileBases.Add(TileType.FreeIndicator, freeTile);
+        tileBases.Add(TileType.OccupiedIndicator, occupiedTile);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.B)){
-            InitializeBuilding(testBuilding);
+            InitializeBuilding(buildingToBuild);
         }
 
         if(Input.GetKeyDown(KeyCode.Space)){
-            if(temp.CanBePlaced()){
-                temp.Place();
+            if(currentBuilding.CanBePlaced()){
+                currentBuilding.Place();
             }
         }
     }
@@ -57,17 +52,10 @@ public class GridBuilding : MonoBehaviour
 
     public void InitializeBuilding(GameObject building)
     {
-        temp = Instantiate(building, Vector3.zero, Quaternion.identity).GetComponent<Building>();
-        FollowBuilding();
+        currentBuilding = Instantiate(building, Vector3.zero, Quaternion.identity).GetComponent<Building>();
+        BuildingIndicators(currentBuilding.transform.position);
     }
 
-    public enum TileType
-    {
-        BuildingArea,
-        FreeIndicator,
-        OccupiedIndicator,
-        Empty
-    }
 
 
     private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
@@ -102,24 +90,26 @@ public class GridBuilding : MonoBehaviour
         }
     }
 
-
-
     private void ClearArea()
     {
-        TileBase[] toClear = new TileBase[prevArea.size.x * prevArea.size.y * prevArea.size.z];
+        TileBase[] toClear = new TileBase[prevBuildingArea.size.x * prevBuildingArea.size.y * prevBuildingArea.size.z];
         FillTiles(toClear, TileType.Empty);
-        tempTilemap.SetTilesBlock(prevArea, toClear);
+        placementIndicatorTilemap.SetTilesBlock(prevBuildingArea, toClear);
     }
 
 
-    public void FollowBuilding()
+
+
+    public void BuildingIndicators(Vector3 position)
     {
         ClearArea();
 
-        temp.area.position = gridLayout.WorldToCell(temp.gameObject.transform.position);
-        BoundsInt buildingArea = temp.area;
+        Vector3 centerPos = new Vector3(position.x - currentBuilding.area.size.x/2, position.y - currentBuilding.area.size.y/2, position.z);
+        currentBuilding.area.position = gridLayout.WorldToCell(centerPos);
 
-        TileBase[] baseArray = GetTilesBlock(buildingArea, mainTilemap);
+        BoundsInt buildingArea = currentBuilding.area;
+
+        TileBase[] baseArray = GetTilesBlock(buildingArea, buildingsTilemap);
 
         int size = baseArray.Length;
         TileBase[] tileArray = new TileBase[size];
@@ -132,17 +122,17 @@ public class GridBuilding : MonoBehaviour
             }
         }
 
-        tempTilemap.SetTilesBlock(buildingArea, tileArray);
-        prevArea = buildingArea;
+        placementIndicatorTilemap.SetTilesBlock(buildingArea, tileArray);
+        prevBuildingArea = buildingArea;
     }
+
 
     public bool CanTakeArea(BoundsInt area)
     {
-        TileBase[] baseArray = GetTilesBlock(area, mainTilemap);
+        TileBase[] baseArray = GetTilesBlock(area, buildingsTilemap);
         foreach(var b in baseArray)
         {
             if(b != null){
-                Debug.Log("cant place here!");
                 return false;
             }
         }
@@ -151,7 +141,7 @@ public class GridBuilding : MonoBehaviour
     }
 
     public void TakeArea(BoundsInt area){
-        SetTilesBlock(area, TileType.Empty, tempTilemap);
-        SetTilesBlock(area, TileType.FreeIndicator, mainTilemap);
+        SetTilesBlock(area, TileType.Empty, placementIndicatorTilemap);
+        SetTilesBlock(area, TileType.FreeIndicator, buildingsTilemap);
     }
 }

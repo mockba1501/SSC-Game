@@ -132,9 +132,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fdcfb0162c55fbcad6a2e0e8240a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingName: Small hut
+  price: 50
+  goldProduction: 22
+  woodProduction: 5
+  destroyParticles: {fileID: 4255513312635838129, guid: 5b7ecd43049b5de089446477ac916802, type: 3}
   area:
     m_Position: {x: 0, y: 0, z: 0}
-    m_Size: {x: 1, y: 1, z: 1}
+    m_Size: {x: 3, y: 3, z: 1}
 --- !u!61 &4626470909076995579
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152,7 +157,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.9846154, y: 0.9846154}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 7.29, y: 6.66}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

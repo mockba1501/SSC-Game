@@ -25,6 +25,7 @@ public class TurnManager : MonoBehaviour
         for(var i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++){
             ResourcesManager.resourcesManager.gold += BuildingsManager.buildingManager.buildings[i].goldProduction;
             ResourcesManager.resourcesManager.wood += BuildingsManager.buildingManager.buildings[i].woodProduction;
+            LevelManager.Instance.SetKeys(BuildingsManager.buildingManager.buildings[i]);
         }
     }
 }

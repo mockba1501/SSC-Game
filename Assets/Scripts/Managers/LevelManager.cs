@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public struct SustKeys
 {
+    public int population;
     public int energy;
-    public int poverty;
-    public int entertainment;
-    public int waste;
+    public int poverty;    
+    public int clean;
 
 }
 public struct LevelBoard
@@ -33,13 +34,28 @@ public struct LevelBoard
 }
 
 
+public struct Level
+{
+    public string objective;
+    public int targetPopulation;
+    public int targetEnergy;
+    public int targetPoverty;
+    public int targetClean;
+
+}
+
+
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager instance;
+    
+    //public static LevelManager instance;
 
     const int LEVELS = 5;
-    int currentLevel = 1;
+    public int currentLevel = 1;
+
+    Level[] levels = new Level[LEVELS];
+
     //initialize empty game tiles
     LevelBoard[] boards =
     {
@@ -75,16 +91,65 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        InitializeLevels();
         //initialize empty game tiles
         for (int i = 0; i < LEVELS; i++)
-        {
+        {            
             boards[i].SetBoard(i + 1, new Building[20, 20]);
         }
 
         sKeys.energy = 0;
         sKeys.poverty = 0;
-        sKeys.entertainment = 0;
-        sKeys.waste = 0;
+        sKeys.population= 0;
+        sKeys.clean = 0;
+    }
+
+    public Level getLevel(int numLevel)
+    {
+        if (numLevel - 1 < 0 || numLevel - 1 > LEVELS - 1)
+            throw new ArgumentOutOfRangeException();
+        else
+        {
+            return levels[numLevel - 1];
+        
+        }
+    }
+
+    private void InitializeLevels()
+    {
+        levels[0].objective = "level 0 description...";
+        levels[1].objective = "level 1 description...";
+        levels[2].objective = "level 2 description...";
+        levels[3].objective = "level 3 description...";
+        levels[4].objective = "level 4 description...";
+
+        levels[0].targetPopulation= 50;
+        levels[0].targetEnergy = 10;
+        levels[0].targetPoverty = 30;
+        levels[0].targetClean = 20;
+
+        levels[1].targetPopulation = 50;
+        levels[1].targetEnergy = 10;
+        levels[1].targetPoverty = 30;
+        levels[1].targetClean = 20;
+
+        levels[2].targetPopulation = 50;
+        levels[2].targetEnergy = 10;
+        levels[2].targetPoverty = 30;
+        levels[2].targetClean = 20;
+
+
+        levels[3].targetPopulation = 50;
+        levels[3].targetEnergy = 10;
+        levels[3].targetPoverty = 30;
+        levels[3].targetClean = 20;
+
+        levels[4].targetPopulation = 50;
+        levels[4].targetEnergy = 10;
+        levels[4].targetPoverty = 30;
+        levels[4].targetClean = 20;
+
     }
 
     // Update is called once per frame
@@ -102,13 +167,14 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void SetKeys(Building b)
+    public void SetKeys(Building b)
     {
         SustKeys bKeys = b.GetKeys();
         sKeys.energy += bKeys.energy;
-        sKeys.entertainment += bKeys.entertainment;
+        sKeys.population += bKeys.population;
         sKeys.poverty += bKeys.poverty;
-        sKeys.waste += bKeys.waste;
+        sKeys.clean += bKeys.clean;
+        Debug.Log("Updating KPIs (population=" +  sKeys.population.ToString());
     }
 
     bool IsTileEmpty(int level, int x, int y)

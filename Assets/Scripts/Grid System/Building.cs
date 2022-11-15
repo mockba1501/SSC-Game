@@ -8,9 +8,13 @@ public class Building : MonoBehaviour
     public int price;
     public int goldProduction;
     public int woodProduction;
-
-    [SerializeField]
-    SustKeys keys;
+    
+    
+    //KPIs for level target
+    public int population;
+    public int poverty;
+    public int energy;
+    public int clean;
 
     public bool placed {get; private set; }
     public GameObject destroyParticles;
@@ -23,10 +27,7 @@ public class Building : MonoBehaviour
 
     void Start()
     {
-        keys.energy = 0;
-        keys.poverty = 0;
-        keys.entertainment = 0;
-        keys.waste = 0;
+        
     }
 
     void Update(){
@@ -69,9 +70,15 @@ public class Building : MonoBehaviour
         GridBuilding.gridBuilding.ClearBuildingArea(area);
         Destroy(this.gameObject);
     }
-
+    
     public SustKeys GetKeys()
     {
+        SustKeys keys;
+        keys.population = population;
+        keys.energy= energy;
+        keys.poverty= poverty;
+        keys.clean= clean;
+
         return keys;
     }
 }

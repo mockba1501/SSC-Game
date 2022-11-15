@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI woodAmountText;
     public TextMeshProUGUI turnNumberText;
 
+    public GameObject levelDescription;
+    public bool showLevelDescription;
 
 
     void Awake()

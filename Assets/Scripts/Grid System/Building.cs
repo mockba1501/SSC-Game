@@ -9,6 +9,8 @@ public class Building : MonoBehaviour
     public int goldProduction;
     public int woodProduction;
 
+    [SerializeField]
+    SustKeys keys;
 
     public bool placed {get; private set; }
     public GameObject destroyParticles;
@@ -17,6 +19,14 @@ public class Building : MonoBehaviour
 
     private void Awake(){
         this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0.5f);
+    }
+
+    void Start()
+    {
+        keys.energy = 0;
+        keys.poverty = 0;
+        keys.entertainment = 0;
+        keys.waste = 0;
     }
 
     void Update(){
@@ -58,5 +68,10 @@ public class Building : MonoBehaviour
         Instantiate(destroyParticles, transform.position, Quaternion.identity);
         GridBuilding.gridBuilding.ClearBuildingArea(area);
         Destroy(this.gameObject);
+    }
+
+    public SustKeys GetKeys()
+    {
+        return keys;
     }
 }

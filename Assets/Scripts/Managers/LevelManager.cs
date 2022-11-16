@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
     //public static LevelManager instance;
 
     const int LEVELS = 5;
-    public int currentLevel = 1;
+    public int currentLevel = 0;
 
     Level[] levels = new Level[LEVELS];
 
@@ -103,6 +103,8 @@ public class LevelManager : MonoBehaviour
         sKeys.poverty = 0;
         sKeys.population= 0;
         sKeys.clean = 0;
+
+        currentLevel = 0;
     }
 
     public Level getLevel(int numLevel)
@@ -125,9 +127,9 @@ public class LevelManager : MonoBehaviour
         levels[4].objective = "level 4 description...";
 
         levels[0].targetPopulation= 50;
-        levels[0].targetEnergy = 10;
-        levels[0].targetPoverty = 30;
-        levels[0].targetClean = 20;
+        levels[0].targetEnergy = 0;
+        levels[0].targetPoverty = 0;
+        levels[0].targetClean = 0;
 
         levels[1].targetPopulation = 50;
         levels[1].targetEnergy = 10;
@@ -182,8 +184,13 @@ public class LevelManager : MonoBehaviour
         return boards[level].GetTiles()[x,y] == null;
     }
 
-    bool isLevelFinished()
+    public bool isLevelFinished()
     {
-        return false;
+        bool levelFinished = true;
+        levelFinished &= levels[currentLevel].targetClean <= sKeys.clean;
+        levelFinished &= levels[currentLevel].targetPopulation <= sKeys.population;
+        levelFinished &= levels[currentLevel].targetEnergy <= sKeys.energy;
+        levelFinished &= levels[currentLevel].targetPoverty <= sKeys.poverty;
+        return levelFinished;
     }
 }

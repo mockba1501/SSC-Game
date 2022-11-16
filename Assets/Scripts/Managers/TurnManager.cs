@@ -21,11 +21,21 @@ public class TurnManager : MonoBehaviour
 
     public void NextTurn(){
         currentTurnNumber++;
-        
-        for(var i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++){
-            ResourcesManager.resourcesManager.gold += BuildingsManager.buildingManager.buildings[i].goldProduction;
-            ResourcesManager.resourcesManager.wood += BuildingsManager.buildingManager.buildings[i].woodProduction;
-            LevelManager.Instance.SetKeys(BuildingsManager.buildingManager.buildings[i]);
+
+        if (!LevelManager.Instance.isLevelFinished())
+        {
+            Debug.Log("Level not completed");
+            for (var i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++)
+            {
+                ResourcesManager.resourcesManager.gold += BuildingsManager.buildingManager.buildings[i].goldProduction;
+                ResourcesManager.resourcesManager.wood += BuildingsManager.buildingManager.buildings[i].woodProduction;
+
+            }
+        }
+        else
+        {
+            //show message to player of level completed and give option to move on to next level
+            Debug.Log("Level completed");
         }
     }
 }

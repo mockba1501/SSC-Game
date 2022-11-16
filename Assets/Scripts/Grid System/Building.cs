@@ -50,6 +50,7 @@ public class Building : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
         BuildingsManager.buildingManager.buildings.Add(this);
         ResourcesManager.resourcesManager.gold -= price;
+        LevelManager.Instance.SetKeys(this);
     }
 
 

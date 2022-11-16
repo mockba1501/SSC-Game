@@ -136,7 +136,7 @@ MonoBehaviour:
   price: 100
   goldProduction: 10
   woodProduction: 13
-  population: 10
+  population: 40
   poverty: 0
   energy: 0
   clean: 0

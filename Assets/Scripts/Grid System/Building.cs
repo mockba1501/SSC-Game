@@ -8,7 +8,13 @@ public class Building : MonoBehaviour
     public string buildingName;
     public int price;
     public int taxIncome;
+    
+    //KPIs for level target
     public int population;
+    public int poverty;
+    public int energy;
+    public int clean;
+
     public bool placed {get; private set; }
     public GameObject destroyParticles;
     public BoundsInt area;
@@ -34,6 +40,11 @@ public class Building : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0.7f);
     }
 
+    void Start()
+    {
+        
+    }
+
     void Update(){
         IndicatePowerAvailability();
     }
@@ -54,6 +65,7 @@ public class Building : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
         BuildingsManager.buildingManager.buildings.Add(this);
         ResourcesManager.resourcesManager.freeMoney -= price;
+        LevelManager.Instance.SetKeys(this);
     }
 
 
@@ -104,5 +116,16 @@ public class Building : MonoBehaviour
                 }
             }
         }
+    }
+    
+    public SustKeys GetKeys()
+    {
+        SustKeys keys;
+        keys.population = population;
+        keys.energy= energy;
+        keys.poverty= poverty;
+        keys.clean= clean;
+
+        return keys;
     }
 }

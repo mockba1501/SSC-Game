@@ -136,6 +136,9 @@ MonoBehaviour:
   price: 50
   taxIncome: -5
   population: 0
+  poverty: 0
+  energy: 0
+  clean: 0
   destroyParticles: {fileID: 4255513312635838129, guid: 5b7ecd43049b5de089446477ac916802, type: 3}
   area:
     m_Position: {x: 0, y: 0, z: 0}

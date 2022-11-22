@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviour
     public GameObject buySolarPanelsButton;
     public TextMeshProUGUI buySolarPanelsButtonText;
 
+    public GameObject levelDescription;
+    public bool showLevelDescription;
 
 
     void Awake()

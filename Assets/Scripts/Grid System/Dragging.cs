@@ -53,6 +53,11 @@ public class Dragging : MonoBehaviour
     public Vector3 SnapCoordinateToGrid(Vector3 position){
         Vector3Int cellPos = GridBuilding.gridBuilding.gridLayout.WorldToCell(position);
         position = GridBuilding.gridBuilding.gridLayout.GetComponent<Grid>().GetCellCenterWorld(cellPos);
+
+        if(!GetComponent<Building>().hasClearCenter){
+            position -= new Vector3(0,0.5f,0);
+        }
+
         return position;
     }
 }

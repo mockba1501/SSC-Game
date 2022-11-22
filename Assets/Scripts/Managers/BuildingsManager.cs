@@ -17,6 +17,33 @@ public class BuildingsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CheckEletricityAvailability();   
+    }
+
+
+    public void CheckEletricityAvailability(){
+        int freeEletricity = ResourcesManager.resourcesManager.GetEletricProduction();
+
+        for(int i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++){
+
+            int consumtionOfCurBuilding;
+            if(BuildingsManager.buildingManager.buildings[i].hasSolarPanels){
+                consumtionOfCurBuilding = BuildingsManager.buildingManager.buildings[i].GetConsumptionWithSolarPanels();
+            }else{
+                consumtionOfCurBuilding = BuildingsManager.buildingManager.buildings[i].electricityConsumption;
+            }
+
+            if(consumtionOfCurBuilding < 0){
+                consumtionOfCurBuilding = 0;
+            }
+
+
+            if(freeEletricity >= consumtionOfCurBuilding){
+                freeEletricity -= consumtionOfCurBuilding;
+                BuildingsManager.buildingManager.buildings[i].hasEletricity = true;
+            }else{
+                BuildingsManager.buildingManager.buildings[i].hasEletricity = false;
+            }
+        }
     }
 }

@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 5324364243921243563}
   - component: {fileID: 1653858730271368854}
   m_Layer: 0
-  m_Name: Hut
+  m_Name: Transformer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 4089894755315086872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1580062051424157193}
@@ -132,14 +132,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70fdcfb0162c55fbcad6a2e0e8240a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingName: Small hut
+  buildingName: Transformator
   price: 50
-  goldProduction: 22
-  woodProduction: 5
+  taxIncome: -5
+  population: 0
   destroyParticles: {fileID: 4255513312635838129, guid: 5b7ecd43049b5de089446477ac916802, type: 3}
   area:
     m_Position: {x: 0, y: 0, z: 0}
-    m_Size: {x: 3, y: 3, z: 1}
+    m_Size: {x: 2, y: 2, z: 1}
+  hasClearCenter: 0
+  canHaveSolarPanels: 0
+  hasSolarPanels: 0
+  solarPanelPrice: 0
+  solarPanelEletricityProduction: 0
+  noEletricityWarning: {fileID: 0}
+  solarPanels: {fileID: 0}
+  hasEletricity: 0
+  electricityProduction: 50
+  electricityConsumption: 0
 --- !u!61 &4626470909076995579
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220,7 +230,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e931294d28617741f9e1463a9a3f5587, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a99bda164dff207c19bbebfbef737c22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

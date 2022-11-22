@@ -39,10 +39,6 @@ public class GridBuilding : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.B)){
-            TryCreateBuildingPrototype();
-        }
-
         if(Input.GetKeyDown(KeyCode.Space)){
             TryToPlaceBuilding();
         }
@@ -56,7 +52,7 @@ public class GridBuilding : MonoBehaviour
 
     public void InitializeBuilding(GameObject building)
     {
-        buildingToBuildInstance = Instantiate(building, Vector3.zero, Quaternion.identity).GetComponent<Building>();
+        buildingToBuildInstance = Instantiate(building).GetComponent<Building>();
         BuildingIndicators(buildingToBuildInstance.transform.position);
     }
 
@@ -117,8 +113,15 @@ public class GridBuilding : MonoBehaviour
     {
         ClearArea();
 
-        Vector3 centerPos = new Vector3(position.x - buildingToBuildInstance.area.size.x/2, position.y - buildingToBuildInstance.area.size.y/2, position.z);
+        //Vector3 centerPos = new Vector3(position.x - buildingToBuildInstance.area.size.x/2, position.y - buildingToBuildInstance.area.size.y/2, position.z);
+
+        Vector3 centerPos = new Vector3(position.x, position.y - buildingToBuildInstance.area.size.y/2, position.z);
+
         buildingToBuildInstance.area.position = gridLayout.WorldToCell(centerPos);
+
+        if(!buildingToBuildInstance.hasClearCenter){
+            //buildingToBuildInstance.transform.position -= new Vector3(0,0.5f,0);
+        }
 
         BoundsInt buildingArea = buildingToBuildInstance.area;
 
@@ -129,13 +132,17 @@ public class GridBuilding : MonoBehaviour
 
         for(int i = 0; i < baseArray.Length; i++){
             if(baseArray[i] == null){
-                if(ResourcesManager.resourcesManager.gold >= buildingToBuildInstance.price){
+                if(ResourcesManager.resourcesManager.freeMoney >= buildingToBuildInstance.price){
                     tileArray[i] = tileBases[TileType.FreeIndicator];
+                    buildingToBuildInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1f,1f,0.7f);
                 }else{
                     FillTiles(tileArray, TileType.OccupiedIndicator);
+
+                    buildingToBuildInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
                 }
             }else{
                 FillTiles(tileArray, TileType.OccupiedIndicator);
+                buildingToBuildInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
             }
         }
 

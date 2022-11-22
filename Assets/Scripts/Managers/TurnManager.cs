@@ -23,8 +23,12 @@ public class TurnManager : MonoBehaviour
         currentTurnNumber++;
         
         for(var i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++){
-            ResourcesManager.resourcesManager.gold += BuildingsManager.buildingManager.buildings[i].goldProduction;
-            ResourcesManager.resourcesManager.wood += BuildingsManager.buildingManager.buildings[i].woodProduction;
+            ResourcesManager.resourcesManager.freeMoney += BuildingsManager.buildingManager.buildings[i].taxIncome;
+        }
+
+        // Reset building indicators
+        if(GridBuilding.gridBuilding.buildingToBuildInstance != null){
+            GridBuilding.gridBuilding.BuildingIndicators(GridBuilding.gridBuilding.buildingToBuildInstance.transform.position);
         }
     }
 }

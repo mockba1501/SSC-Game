@@ -4,27 +4,42 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
+    // General
     public string buildingName;
     public int price;
-    public int goldProduction;
-    public int woodProduction;
-
-
+    public int taxIncome;
+    public int population;
     public bool placed {get; private set; }
     public GameObject destroyParticles;
     public BoundsInt area;
+    public bool hasClearCenter = true;
+
+    // Solar panels
+    public bool canHaveSolarPanels = true;
+    public bool hasSolarPanels;
+    public int solarPanelPrice;
+    public int solarPanelEletricityProduction;
+    public GameObject noEletricityWarning;
+    public GameObject solarPanels;
+
+
+    // Eletricity
+    public bool hasEletricity;
+    public int electricityProduction;
+    public int electricityConsumption;
+
 
 
     private void Awake(){
-        this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0.5f);
+        this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0.7f);
     }
 
     void Update(){
-
+        IndicatePowerAvailability();
     }
 
     public bool CanBePlaced(){
-        if(GridBuilding.gridBuilding.CanTakeArea(area) && ResourcesManager.resourcesManager.gold >= price)
+        if(GridBuilding.gridBuilding.CanTakeArea(area) && ResourcesManager.resourcesManager.freeMoney >= price)
         {
             return true;
         }
@@ -38,7 +53,7 @@ public class Building : MonoBehaviour
         GridBuilding.gridBuilding.TakeArea(area);
         this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
         BuildingsManager.buildingManager.buildings.Add(this);
-        ResourcesManager.resourcesManager.gold -= price;
+        ResourcesManager.resourcesManager.freeMoney -= price;
     }
 
 
@@ -58,5 +73,36 @@ public class Building : MonoBehaviour
         Instantiate(destroyParticles, transform.position, Quaternion.identity);
         GridBuilding.gridBuilding.ClearBuildingArea(area);
         Destroy(this.gameObject);
+    }
+
+
+    public void BuildSolarPanels(){
+
+        ResourcesManager.resourcesManager.freeMoney -= solarPanelPrice;
+        hasSolarPanels = true;
+        solarPanels.SetActive(true);
+
+        if(solarPanelEletricityProduction > electricityConsumption){
+            electricityProduction += solarPanelEletricityProduction-electricityConsumption;
+        }
+    }
+
+
+    public int GetConsumptionWithSolarPanels(){
+        return electricityConsumption - solarPanelEletricityProduction;
+    }
+
+    public void IndicatePowerAvailability(){
+        if(electricityConsumption > 0){
+            if(hasEletricity){
+                noEletricityWarning.SetActive(false);
+            }else{
+                if(placed){
+                    noEletricityWarning.SetActive(true);
+                }else{
+                    noEletricityWarning.SetActive(false);
+                }
+            }
+        }
     }
 }

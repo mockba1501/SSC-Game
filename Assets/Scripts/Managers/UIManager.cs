@@ -21,9 +21,16 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI buildingAttributesText;
     public Image buildingImage;
 
-    public TextMeshProUGUI goldAmountText;
-    public TextMeshProUGUI woodAmountText;
+
+    public TextMeshProUGUI eletricProductionText;
+    public TextMeshProUGUI electricityConsumptionText;
+    public TextMeshProUGUI taxIncomeText;
+    public TextMeshProUGUI freeMoneyText;
     public TextMeshProUGUI turnNumberText;
+    public TextMeshProUGUI populationText;
+
+    public GameObject buySolarPanelsButton;
+    public TextMeshProUGUI buySolarPanelsButtonText;
 
 
 
@@ -39,19 +46,21 @@ public class UIManager : MonoBehaviour
         placeButton.SetActive(ShowPlaceButton());
         cancelPlacementButton.SetActive(ShowPlaceButton());
         SetBuildingInfoPanel();
+        SetBuySolarPanelsButton();
 
-        goldAmountText.SetText("Gold: "+ResourcesManager.resourcesManager.gold.ToString());
-        woodAmountText.SetText("Wood: " +ResourcesManager.resourcesManager.wood.ToString());
+
+        eletricProductionText.SetText("Eletric production: "+ResourcesManager.resourcesManager.GetEletricProduction().ToString()+" kw ");
+        electricityConsumptionText.SetText("Eletric consumption: "+ResourcesManager.resourcesManager.GetEletricConsumption().ToString()+" kw ");
+
+        freeMoneyText.SetText("Money: "+ResourcesManager.resourcesManager.freeMoney.ToString()+"M");
+        taxIncomeText.SetText("Tax income: "+ResourcesManager.resourcesManager.GetTaxIncome().ToString()+"M/turn ");
         turnNumberText.SetText("Turn: "+TurnManager.turnManager.currentTurnNumber.ToString());
+        populationText.SetText("Population: "+ResourcesManager.resourcesManager.GetTotalPopulation().ToString());
     }
 
-    public void setSmallHouse(){
-        GridBuilding.gridBuilding.buildingToBuild = house_small;
-        GridBuilding.gridBuilding.TryCreateBuildingPrototype();
-    }
 
-    public void setBugHouse(){
-        GridBuilding.gridBuilding.buildingToBuild = house_big;
+    public void SetBuildingToBuild(GameObject building){
+        GridBuilding.gridBuilding.buildingToBuild = building;
         GridBuilding.gridBuilding.TryCreateBuildingPrototype();
     }
 
@@ -91,13 +100,76 @@ public class UIManager : MonoBehaviour
 
         if(building != null){
             buildingNameText.SetText(building.buildingName);
-            buildingAttributesText.SetText("Price: \n"+building.price+"\n\n"+"Gold production: \n"+building.goldProduction+"\n\n"+"Wood production: \n"+building.woodProduction);
             buildingImage.sprite = building.gameObject.GetComponent<SpriteRenderer>().sprite;
+
+
+            buildingAttributesText.SetText("");
+
+            if(building.placed == false){
+                buildingAttributesText.SetText("Price: "+building.price+"\n\n");
+            }
+
+            if(building.hasEletricity == false && building.placed){
+                buildingAttributesText.SetText(buildingAttributesText.text+"HAS NO ELETRICITY!\n\n");
+            }
+
+            buildingAttributesText.SetText(buildingAttributesText.text+"Population: "+building.population+"\n\n");
+            buildingAttributesText.SetText(buildingAttributesText.text+"Tax income: "+building.taxIncome+"\n\n");
+
+            if(building.hasSolarPanels){
+                buildingAttributesText.SetText(buildingAttributesText.text+"Solar panel production: "+building.solarPanelEletricityProduction+" kw\n\n");
+            }
+
+            buildingAttributesText.SetText(buildingAttributesText.text+"Eletricity production: "+building.electricityProduction+"\n\n");
+            buildingAttributesText.SetText(buildingAttributesText.text+"Eletricity consumption: "+building.electricityConsumption+"\n\n");
+
+
+
+
+
             BuildingInfoPanel.SetActive(true);
         }
     }
 
     public void NextTurnButtonPressed(){
         TurnManager.turnManager.NextTurn();
+    }
+
+    public void BuySolarPanelsButtonPressed(){
+        Building building = null;
+        
+        if(BuildingsManager.buildingManager.currentBuilding != null){
+            building = BuildingsManager.buildingManager.currentBuilding;
+        }else{
+            return;
+        }
+
+        building.BuildSolarPanels();
+    }
+
+    public void SetBuySolarPanelsButton(){
+        Building building = null;
+        
+        if(BuildingsManager.buildingManager.currentBuilding != null){
+            building = BuildingsManager.buildingManager.currentBuilding;
+        }else{
+            buySolarPanelsButton.SetActive(false);
+            return;
+        }
+
+        if(building.hasSolarPanels || !building.canHaveSolarPanels){
+            buySolarPanelsButton.SetActive(false);
+            return;
+        }
+
+
+        buySolarPanelsButtonText.SetText("Buy solar panels ("+building.solarPanelPrice.ToString()+"M)");
+        buySolarPanelsButton.SetActive(true);
+
+        if(ResourcesManager.resourcesManager.freeMoney >= building.solarPanelPrice){
+            buySolarPanelsButton.GetComponent<Button>().interactable = true;
+        }else{
+            buySolarPanelsButton.GetComponent<Button>().interactable = false;
+        }
     }
 }

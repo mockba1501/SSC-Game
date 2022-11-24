@@ -40,4 +40,5 @@ public class TurnManager : MonoBehaviour
             Debug.Log("Level completed");
         }
     }
+    }
 }

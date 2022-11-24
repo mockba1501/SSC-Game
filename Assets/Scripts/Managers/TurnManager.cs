@@ -19,26 +19,32 @@ public class TurnManager : MonoBehaviour
         
     }
 
-    public void NextTurn(){
+    public void NextTurn()
+    {
         currentTurnNumber++;
 
         // Reset building indicators
-        if(GridBuilding.gridBuilding.buildingToBuildInstance != null){
+        if (GridBuilding.gridBuilding.buildingToBuildInstance != null)
+        {
             GridBuilding.gridBuilding.BuildingIndicators(GridBuilding.gridBuilding.buildingToBuildInstance.transform.position);
 
-        if (!LevelManager.Instance.isLevelFinished())
-        {
-            Debug.Log("Level not completed");
-            for (var i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++)
+            if (!LevelManager.Instance.IsLevelFinished())
             {
-                ResourcesManager.resourcesManager.freeMoney += BuildingsManager.buildingManager.buildings[i].taxIncome;
+                Debug.Log("Level not completed");
+                for (var i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++)
+                {
+                    ResourcesManager.resourcesManager.freeMoney += BuildingsManager.buildingManager.buildings[i].taxIncome;
+                }
             }
-        }
-        else
-        {
-            //show message to player of level completed and give option to move on to next level
-            Debug.Log("Level completed");
+            else
+            {
+                //show message to player of level completed and give option to move on to next level
+                Debug.Log("Level completed");
+            }
+
         }
     }
-    }
+
+  
+
 }

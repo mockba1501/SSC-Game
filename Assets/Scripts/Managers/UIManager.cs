@@ -35,6 +35,10 @@ public class UIManager : MonoBehaviour
     public GameObject levelDescription;
     public bool showLevelDescription;
 
+    public TextMeshProUGUI levelDescriptionText;
+    //public TextMeshProUGUI levelCompletedText;
+    public GameObject levelCompletedText;
+    public GameObject nextLevelButton;
 
     void Awake()
     {
@@ -44,12 +48,17 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // Would be better to do it only when level change
+        if (showLevelDescription)
+        {
+            levelDescriptionText.SetText(LevelManager.Instance.GetLevelDescription());
+        }
         deleteButton.SetActive(showDeleteButton);
         placeButton.SetActive(ShowPlaceButton());
         cancelPlacementButton.SetActive(ShowPlaceButton());
         SetBuildingInfoPanel();
         SetBuySolarPanelsButton();
-
 
         eletricProductionText.SetText("Eletric production: "+ResourcesManager.resourcesManager.GetEletricProduction().ToString()+" kw ");
         electricityConsumptionText.SetText("Eletric consumption: "+ResourcesManager.resourcesManager.GetEletricConsumption().ToString()+" kw ");
@@ -58,6 +67,7 @@ public class UIManager : MonoBehaviour
         taxIncomeText.SetText("Tax income: "+ResourcesManager.resourcesManager.GetTaxIncome().ToString()+"M/turn ");
         turnNumberText.SetText("Turn: "+TurnManager.turnManager.currentTurnNumber.ToString());
         populationText.SetText("Population: "+ResourcesManager.resourcesManager.GetTotalPopulation().ToString());
+
     }
 
 
@@ -135,6 +145,15 @@ public class UIManager : MonoBehaviour
 
     public void NextTurnButtonPressed(){
         TurnManager.turnManager.NextTurn();
+
+        if (LevelManager.Instance.IsLevelFinished())
+        {
+            //levelCompletedText.enabled = true;            
+            levelCompletedText.SetActive(true);
+            nextLevelButton.SetActive(true);
+
+        }
+
     }
 
     public void BuySolarPanelsButtonPressed(){
@@ -173,5 +192,9 @@ public class UIManager : MonoBehaviour
         }else{
             buySolarPanelsButton.GetComponent<Button>().interactable = false;
         }
+    }
+    public void NextLevelPressed()
+    {
+        LevelManager.Instance.NextLevel();
     }
 }

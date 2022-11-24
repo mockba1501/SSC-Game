@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public struct SustKeys
 {
@@ -36,7 +37,8 @@ public struct LevelBoard
 
 public struct Level
 {
-    public string objective;
+    public string levelDescription;
+    public string levelSceneName;
     public int targetPopulation;
     public int targetEnergy;
     public int targetPoverty;
@@ -93,12 +95,13 @@ public class LevelManager : MonoBehaviour
     {
 
         InitializeLevels();
+      /*
         //initialize empty game tiles
         for (int i = 0; i < LEVELS; i++)
         {            
             boards[i].SetBoard(i + 1, new Building[20, 20]);
         }
-
+      */
         sKeys.energy = 0;
         sKeys.poverty = 0;
         sKeys.population= 0;
@@ -120,38 +123,49 @@ public class LevelManager : MonoBehaviour
 
     private void InitializeLevels()
     {
-        levels[0].objective = "level 0 description...";
-        levels[1].objective = "level 1 description...";
-        levels[2].objective = "level 2 description...";
-        levels[3].objective = "level 3 description...";
-        levels[4].objective = "level 4 description...";
 
-        levels[0].targetPopulation= 50;
-        levels[0].targetEnergy = 0;
-        levels[0].targetPoverty = 0;
-        levels[0].targetClean = 0;
+        int i = 0;
+        
 
-        levels[1].targetPopulation = 50;
-        levels[1].targetEnergy = 10;
-        levels[1].targetPoverty = 30;
-        levels[1].targetClean = 20;
+        levels[i].targetPopulation= 50;
+        levels[i].targetEnergy = 0;
+        levels[i].targetPoverty = 0;
+        levels[i].targetClean = 0;
+        levels[i].levelDescription = string.Format("Level 1: this is an easy one. You must reach a population of {0} people", levels[i].targetPopulation);
+        levels[i].levelSceneName = "Level" + i;
 
-        levels[2].targetPopulation = 50;
-        levels[2].targetEnergy = 10;
-        levels[2].targetPoverty = 30;
-        levels[2].targetClean = 20;
+        i++;
 
+        levels[i].targetPopulation = 50;
+        levels[i].targetEnergy = 10;
+        levels[i].targetPoverty = 30;
+        levels[i].targetClean = 20;
+        levels[i].levelDescription = string.Format("Level 2: now you have to be careful. You must reach a population of {0} people, and the cleaness has to be {1}", levels[i].targetPopulation, levels[i].targetClean);
+        levels[i].levelSceneName = "Level" + i;
 
-        levels[3].targetPopulation = 50;
-        levels[3].targetEnergy = 10;
-        levels[3].targetPoverty = 30;
-        levels[3].targetClean = 20;
+        i++;
+        levels[i].targetPopulation = 50;
+        levels[i].targetEnergy = 10;
+        levels[i].targetPoverty = 30;
+        levels[i].targetClean = 20;
+        levels[i].levelDescription = string.Format("Level 3: this is serious. You must reach a population of {0} people, energy minimum of {1}, wealth should be {2} and the cleaness has to be {3}", levels[i].targetPopulation, levels[i].targetEnergy, levels[i].targetPoverty, levels[i].targetClean);
+        levels[i].levelSceneName = "Level" + i;
 
-        levels[4].targetPopulation = 50;
-        levels[4].targetEnergy = 10;
-        levels[4].targetPoverty = 30;
-        levels[4].targetClean = 20;
+        i++;
+        levels[i].targetPopulation = 50;
+        levels[i].targetEnergy = 10;
+        levels[i].targetPoverty = 30;
+        levels[i].targetClean = 20;
+        levels[i].levelDescription = string.Format("Level 4: this is pro series. You must reach a population of {0} people, energy minimum of {1}, wealth should be {2} and the cleaness has to be {3}", levels[i].targetPopulation, levels[i].targetEnergy, levels[i].targetPoverty, levels[i].targetClean);
+        levels[i].levelSceneName = "Level" + i;
 
+        i++;
+        levels[i].targetPopulation = 50;
+        levels[i].targetEnergy = 10;
+        levels[i].targetPoverty = 30;
+        levels[i].targetClean = 20;
+        levels[i].levelDescription = string.Format("Level 5: Final One! You must reach a population of {0} people, energy minimum of {1}, wealth should be {2} and the cleaness has to be {3}", levels[i].targetPopulation, levels[i].targetEnergy, levels[i].targetPoverty, levels[i].targetClean);
+        levels[i].levelSceneName = "Level" + i;
     }
 
     // Update is called once per frame
@@ -159,7 +173,7 @@ public class LevelManager : MonoBehaviour
     {
         
     }
-
+    /*
     void PlaceBuilding(Building b, int x, int y)
     {
         if (IsTileEmpty(currentLevel, x, y))
@@ -168,7 +182,7 @@ public class LevelManager : MonoBehaviour
             SetKeys(b);
         }
     }
-
+    */
     public void SetKeys(Building b)
     {
         SustKeys bKeys = b.GetKeys();
@@ -176,21 +190,51 @@ public class LevelManager : MonoBehaviour
         sKeys.population += bKeys.population;
         sKeys.poverty += bKeys.poverty;
         sKeys.clean += bKeys.clean;
-        Debug.Log("Updating KPIs (population=" +  sKeys.population.ToString());
+        string log= String.Format("Updating KPIs (population={0}, energy={1}, poverty={2}, clean={3}", sKeys.population, sKeys.energy, sKeys.poverty, sKeys.clean);
+        Debug.Log(log);
     }
 
+    /*
     bool IsTileEmpty(int level, int x, int y)
     {
         return boards[level].GetTiles()[x,y] == null;
     }
+    */
 
-    public bool isLevelFinished()
+    public bool IsLevelFinished()
     {
+        return true;
         bool levelFinished = true;
         levelFinished &= levels[currentLevel].targetClean <= sKeys.clean;
         levelFinished &= levels[currentLevel].targetPopulation <= sKeys.population;
         levelFinished &= levels[currentLevel].targetEnergy <= sKeys.energy;
         levelFinished &= levels[currentLevel].targetPoverty <= sKeys.poverty;
         return levelFinished;
+    }
+    public bool NextLevel()
+    {
+        currentLevel++;
+        if (currentLevel == LEVELS)
+        {
+            Debug.Log("Max levels reached. Endgame");
+            return false;
+        }
+        else
+        {
+            Debug.Log("NextLevel: Current level= " + currentLevel);
+            SceneManager.LoadScene(levels[currentLevel].levelSceneName, LoadSceneMode.Single);
+            return true;
+        }
+
+    }
+
+    /// <summary>
+    /// Call this method from UI to show level description and 
+    /// objetives
+    /// </summary>
+    /// <returns>Level description</returns>
+    public string GetLevelDescription()
+    {
+        return levels[currentLevel].levelDescription;
     }
 }

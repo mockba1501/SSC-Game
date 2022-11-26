@@ -1,0 +1,215 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+
+public class GridBuilding : MonoBehaviour
+{
+    public static GridBuilding gridBuilding;
+    private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
+
+    public GridLayout gridLayout;
+    public Tilemap buildingsTilemap;
+    public Tilemap placementIndicatorTilemap;
+
+    private BoundsInt prevBuildingArea;
+    public Building buildingToBuildInstance;
+    public GameObject buildingToBuild;
+
+    public Tile freeTile;
+    public Tile occupiedTile;
+    public Tile buildingTile;
+    public enum TileType { FreeIndicator, OccupiedIndicator, Empty, Building}
+
+
+
+    public void Awake(){
+        gridBuilding = this;
+    }
+
+    void Start()
+    {
+        tileBases.Add(TileType.Empty, null);
+        tileBases.Add(TileType.FreeIndicator, freeTile);
+        tileBases.Add(TileType.OccupiedIndicator, occupiedTile);
+        tileBases.Add(TileType.Building, buildingTile);
+    }
+
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space)){
+            TryToPlaceBuilding();
+        }
+
+
+        // Check for clicks on tiles
+        DetectClickedTile();
+    }
+
+
+
+    public void InitializeBuilding(GameObject building)
+    {
+        buildingToBuildInstance = Instantiate(building).GetComponent<Building>();
+        BuildingIndicators(buildingToBuildInstance.transform.position);
+    }
+
+
+
+    private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
+    {
+        TileBase[] array = new TileBase[area.size.x * area.size.y * area.size.z];
+        int counter = 0;
+
+        foreach(var v in area.allPositionsWithin)
+        {
+            Vector3Int pos = new Vector3Int(v.x, v.y, 0);
+            array[counter] = tilemap.GetTile(pos);
+            counter++;
+        }
+
+        return array;
+    }
+
+
+    private static void SetTilesBlock(BoundsInt area, TileType type, Tilemap tilemap)
+    {
+        int size = area.size.x * area.size.y * area.size.z;
+        TileBase[] tileArray = new TileBase[size];
+        FillTiles(tileArray, type);
+        tilemap.SetTilesBlock(area, tileArray);
+    }
+
+    private static void FillTiles(TileBase[] arr, TileType type)
+    {
+        for(int i = 0; i < arr.Length; i++)
+        {
+            arr[i] = tileBases[type];
+        }
+    }
+
+    private void ClearArea()
+    {
+        TileBase[] toClear = new TileBase[prevBuildingArea.size.x * prevBuildingArea.size.y * prevBuildingArea.size.z];
+        FillTiles(toClear, TileType.Empty);
+        placementIndicatorTilemap.SetTilesBlock(prevBuildingArea, toClear);
+    }
+
+
+
+    public void ClearBuildingArea(BoundsInt area)
+    {
+        TileBase[] toClear = new TileBase[area.size.x * area.size.y * area.size.z];
+        FillTiles(toClear, TileType.Empty);
+        buildingsTilemap.SetTilesBlock(area, toClear);
+    }
+
+
+
+
+    public void BuildingIndicators(Vector3 position)
+    {
+        ClearArea();
+
+        //Vector3 centerPos = new Vector3(position.x - buildingToBuildInstance.area.size.x/2, position.y - buildingToBuildInstance.area.size.y/2, position.z);
+
+        Vector3 centerPos = new Vector3(position.x, position.y - buildingToBuildInstance.area.size.y/2, position.z);
+
+        buildingToBuildInstance.area.position = gridLayout.WorldToCell(centerPos);
+
+        if(!buildingToBuildInstance.hasClearCenter){
+            //buildingToBuildInstance.transform.position -= new Vector3(0,0.5f,0);
+        }
+
+        BoundsInt buildingArea = buildingToBuildInstance.area;
+
+        TileBase[] baseArray = GetTilesBlock(buildingArea, buildingsTilemap);
+
+        int size = baseArray.Length;
+        TileBase[] tileArray = new TileBase[size];
+
+        for(int i = 0; i < baseArray.Length; i++){
+            if(baseArray[i] == null){
+                if(ResourcesManager.resourcesManager.freeMoney >= buildingToBuildInstance.price){
+                    tileArray[i] = tileBases[TileType.FreeIndicator];
+                    buildingToBuildInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1f,1f,0.7f);
+                }else{
+                    FillTiles(tileArray, TileType.OccupiedIndicator);
+
+                    buildingToBuildInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
+                }
+            }else{
+                FillTiles(tileArray, TileType.OccupiedIndicator);
+                buildingToBuildInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
+            }
+        }
+
+        placementIndicatorTilemap.SetTilesBlock(buildingArea, tileArray);
+        prevBuildingArea = buildingArea;
+    }
+
+
+    public bool CanTakeArea(BoundsInt area)
+    {
+        TileBase[] baseArray = GetTilesBlock(area, buildingsTilemap);
+        foreach(var b in baseArray)
+        {
+            if(b != null){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void TakeArea(BoundsInt area){
+        // Reset placement indicator tiles to null
+        SetTilesBlock(area, TileType.Empty, placementIndicatorTilemap);
+
+        // Set buildingsTilemap to building tile
+        SetTilesBlock(area, TileType.Building, buildingsTilemap);
+    }
+
+
+    public void DetectClickedTile(){
+        var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var noZ = new Vector3(pos.x, pos.y);
+        Vector3Int mouseCell = buildingsTilemap.WorldToCell(noZ);
+
+        if(Input.GetMouseButtonUp(0))
+        {
+            var clickedTile = buildingsTilemap.GetTile(mouseCell);
+
+            if(clickedTile == null){
+                UIManager.uiManager.showDeleteButton = false;
+                BuildingsManager.buildingManager.currentBuilding = null;
+            }
+        }
+    }
+
+    public void TryToPlaceBuilding(){
+        if(buildingToBuildInstance.CanBePlaced()){
+            buildingToBuildInstance.Place();
+            buildingToBuildInstance = null;
+        }
+    }
+
+    public void TryCreateBuildingPrototype(){
+        if(buildingToBuildInstance == null){
+            InitializeBuilding(buildingToBuild);
+        }else{
+            if(buildingToBuildInstance.buildingName != buildingToBuild.GetComponent<Building>().buildingName){
+                CancelPlacement();
+                TryCreateBuildingPrototype();
+            }
+        }
+    }
+
+    public void CancelPlacement(){
+        ClearArea();
+        Destroy(buildingToBuildInstance.gameObject);
+        buildingToBuildInstance = null;
+    }
+}

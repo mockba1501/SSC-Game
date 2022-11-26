@@ -59,7 +59,10 @@ public class LevelManager : MonoBehaviour
 
     public Button[] lvlButtons;
     const int LEVELS = 5;
-    public int currentLevel = 0;
+    int currentLevel = 0;
+    public int TestNumberOfTurnsToPassLevel = 5;
+    private int TestNumberOfTurnsToPassLevelCounter = 0;
+    public bool TEST_MODE;
 
     Level[] levels = new Level[LEVELS];
 
@@ -74,22 +77,21 @@ public class LevelManager : MonoBehaviour
         };
 
 
-
-
     public static LevelManager Instance { get; private set; }
-
+    
 
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
 
-        if (Instance != null && Instance != this)
+        if (Instance == null)
         {
-            Destroy(this);
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            Instance = this;
+            Destroy(this.gameObject);
         }
     }
 
@@ -98,14 +100,16 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int levelAt = PlayerPrefs.GetInt("levelAt", 2); 
+/*        int levelAt = PlayerPrefs.GetInt("levelAt", 2); 
 
         for (int i = 0; i < lvlButtons.Length; i++)
         {
             if (i + 2 > levelAt)
                 lvlButtons[i].interactable = false;
         }
+*/
         InitializeLevels();
+
       /*
         //initialize empty game tiles
         for (int i = 0; i < LEVELS; i++)
@@ -118,7 +122,7 @@ public class LevelManager : MonoBehaviour
         sKeys.population= 0;
         sKeys.clean = 0;
 
-        currentLevel = 0;
+        
     }
 
     public Level getLevel(int numLevel)
@@ -215,13 +219,25 @@ public class LevelManager : MonoBehaviour
 
     public bool IsLevelFinished()
     {
-        return true;
-        bool levelFinished = true;
-        levelFinished &= levels[currentLevel].targetClean <= sKeys.clean;
-        levelFinished &= levels[currentLevel].targetPopulation <= sKeys.population;
-        levelFinished &= levels[currentLevel].targetEnergy <= sKeys.energy;
-        levelFinished &= levels[currentLevel].targetPoverty <= sKeys.poverty;
-        return levelFinished;
+        if (TEST_MODE)
+        {
+            if (++TestNumberOfTurnsToPassLevelCounter == TestNumberOfTurnsToPassLevel)
+            {
+                TestNumberOfTurnsToPassLevelCounter = 0;
+                return true;
+            }
+
+        }
+        else
+        {
+            bool levelFinished = true;
+            levelFinished &= levels[currentLevel].targetClean <= sKeys.clean;
+            levelFinished &= levels[currentLevel].targetPopulation <= sKeys.population;
+            levelFinished &= levels[currentLevel].targetEnergy <= sKeys.energy;
+            levelFinished &= levels[currentLevel].targetPoverty <= sKeys.poverty;
+            return levelFinished;
+        }
+        return false;
     }
     public bool NextLevel()
     {
@@ -247,6 +263,7 @@ public class LevelManager : MonoBehaviour
     /// <returns>Level description</returns>
     public string GetLevelDescription()
     {
+        //Debug.Log("Current level= " + currentLevel);
         return levels[currentLevel].levelDescription;
     }
 }

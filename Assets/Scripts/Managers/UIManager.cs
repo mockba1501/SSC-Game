@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -36,9 +37,9 @@ public class UIManager : MonoBehaviour
     public bool showLevelDescription;
 
     public TextMeshProUGUI levelDescriptionText;
-    //public TextMeshProUGUI levelCompletedText;
-    public GameObject levelCompletedText;
-    public GameObject nextLevelButton;
+    
+    public GameObject levelCompletedPanel; 
+    
 
     void Awake()
     {
@@ -148,10 +149,7 @@ public class UIManager : MonoBehaviour
 
         if (LevelManager.Instance.IsLevelFinished())
         {
-            //levelCompletedText.enabled = true;            
-            levelCompletedText.SetActive(true);
-            nextLevelButton.SetActive(true);
-
+            levelCompletedPanel.SetActive(true);     
         }
 
     }
@@ -170,28 +168,37 @@ public class UIManager : MonoBehaviour
 
     public void SetBuySolarPanelsButton(){
         Building building = null;
-        
-        if(BuildingsManager.buildingManager.currentBuilding != null){
+
+
+        if (BuildingsManager.buildingManager.currentBuilding != null)
+        {
             building = BuildingsManager.buildingManager.currentBuilding;
-        }else{
+        }
+        else
+        {
             buySolarPanelsButton.SetActive(false);
             return;
         }
 
-        if(building.hasSolarPanels || !building.canHaveSolarPanels){
+        if (building.hasSolarPanels || !building.canHaveSolarPanels)
+        {
             buySolarPanelsButton.SetActive(false);
             return;
         }
 
 
-        buySolarPanelsButtonText.SetText("Buy solar panels ("+building.solarPanelPrice.ToString()+"M)");
+        buySolarPanelsButtonText.SetText("Buy solar panels (" + building.solarPanelPrice.ToString() + "M)");
         buySolarPanelsButton.SetActive(true);
 
-        if(ResourcesManager.resourcesManager.freeMoney >= building.solarPanelPrice){
+        if (ResourcesManager.resourcesManager.freeMoney >= building.solarPanelPrice)
+        {
             buySolarPanelsButton.GetComponent<Button>().interactable = true;
-        }else{
+        }
+        else
+        {
             buySolarPanelsButton.GetComponent<Button>().interactable = false;
         }
+
     }
     public void NextLevelPressed()
     {

@@ -37,24 +37,29 @@ public class UIManager : MonoBehaviour
     public bool showLevelDescription;
 
     public TextMeshProUGUI levelDescriptionText;
-    
-    public GameObject levelCompletedPanel; 
-    
+
+    public GameObject levelCompletedPanel;
+
 
     void Awake()
     {
         uiManager = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        // Would be better to do it only when level change
+    // Start is called before the first frame update
+    void Start()
+    {        
         if (showLevelDescription)
         {
             levelDescriptionText.SetText(LevelManager.Instance.GetLevelDescription());
         }
+
+    }
+    // Update is called once per frame
+    void Update()
+    {
+
+        
         deleteButton.SetActive(showDeleteButton);
         placeButton.SetActive(ShowPlaceButton());
         cancelPlacementButton.SetActive(ShowPlaceButton());

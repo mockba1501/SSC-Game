@@ -14,29 +14,6 @@ public struct SustKeys
 
 
 }
-public struct LevelBoard
-{
-    int Level;
-    Building[,] Tiles;
-   
-
-
-    public void SetBoard(int level, Building[,] tiles)
-    {
-        Level = level;
-        Tiles = tiles;
-    }
-
-    public Building[,] GetTiles()
-    {
-        return Tiles;
-    }
-
-    public void SetTile(int x, int y, Building b)
-    {
-        Tiles[x, y] = b;
-    }
-}
 
 
 public struct Level
@@ -65,16 +42,6 @@ public class LevelManager : MonoBehaviour
     public bool TEST_MODE;
 
     Level[] levels = new Level[LEVELS];
-
-    //initialize empty game tiles
-    LevelBoard[] boards =
-    {
-            new LevelBoard(),
-            new LevelBoard(),
-            new LevelBoard(),
-            new LevelBoard(),
-            new LevelBoard(),
-        };
 
 
     public static LevelManager Instance { get; private set; }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public struct SustKeys
 {
@@ -11,11 +12,14 @@ public struct SustKeys
     public int poverty;    
     public int clean;
 
+
 }
 public struct LevelBoard
 {
     int Level;
     Building[,] Tiles;
+   
+
 
     public void SetBoard(int level, Building[,] tiles)
     {
@@ -53,6 +57,7 @@ public class LevelManager : MonoBehaviour
     
     //public static LevelManager instance;
 
+    public Button[] lvlButtons;
     const int LEVELS = 5;
     public int currentLevel = 0;
 
@@ -93,7 +98,13 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int levelAt = PlayerPrefs.GetInt("levelAt", 2); 
 
+        for (int i = 0; i < lvlButtons.Length; i++)
+        {
+            if (i + 2 > levelAt)
+                lvlButtons[i].interactable = false;
+        }
         InitializeLevels();
       /*
         //initialize empty game tiles
@@ -174,6 +185,7 @@ public class LevelManager : MonoBehaviour
         
     }
     /*
+
     void PlaceBuilding(Building b, int x, int y)
     {
         if (IsTileEmpty(currentLevel, x, y))

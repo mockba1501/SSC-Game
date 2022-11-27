@@ -206,6 +206,11 @@ public class LevelManager : MonoBehaviour
         }
         return false;
     }
+
+    public bool IsLastLevel()
+    {
+        return currentLevel + 1 == LEVELS;
+    }
     public bool NextLevel()
     {
         currentLevel++;
@@ -216,11 +221,17 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("NextLevel: Current level= " + currentLevel);
-            SceneManager.LoadScene(levels[currentLevel].levelSceneName, LoadSceneMode.Single);
+            Debug.Log("NextLevel: Current level= " + currentLevel + " Loading " + levels[currentLevel].levelSceneName);
+            SceneManager.LoadScene(levels[currentLevel].levelSceneName);
             return true;
         }
 
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("Exit game");
+        Application.Quit();
     }
 
     /// <summary>

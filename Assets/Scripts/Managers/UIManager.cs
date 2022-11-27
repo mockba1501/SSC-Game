@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI levelDescriptionText;
 
     public GameObject levelCompletedPanel;
+    public GameObject gameOverPanel;
 
 
     void Awake()
@@ -154,7 +155,10 @@ public class UIManager : MonoBehaviour
 
         if (LevelManager.Instance.IsLevelFinished())
         {
-            levelCompletedPanel.SetActive(true);     
+            if (!LevelManager.Instance.IsLastLevel())
+                levelCompletedPanel.SetActive(true);
+            else
+                gameOverPanel.SetActive(true);
         }
 
     }
@@ -208,5 +212,12 @@ public class UIManager : MonoBehaviour
     public void NextLevelPressed()
     {
         LevelManager.Instance.NextLevel();
+    }
+
+    public void ExitButtonPressed()
+    {
+        Debug.Log("ExitButtonPressed");
+        LevelManager.Instance.ExitGame();
+
     }
 }

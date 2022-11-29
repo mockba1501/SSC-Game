@@ -8314,7 +8314,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a907fa6d08c404dadbbfbb90297417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 0
+  lvlButtons: []
+  TestNumberOfTurnsToPassLevel: 5
+  TEST_MODE: 0
 --- !u!1 &1519103053
 GameObject:
   m_ObjectHideFlags: 0
@@ -8468,6 +8470,9 @@ MonoBehaviour:
   buySolarPanelsButtonText: {fileID: 1403501950}
   levelDescription: {fileID: 0}
   showLevelDescription: 0
+  levelDescriptionText: {fileID: 0}
+  levelCompletedPanel: {fileID: 0}
+  gameOverPanel: {fileID: 0}
 --- !u!4 &1711923981
 Transform:
   m_ObjectHideFlags: 0

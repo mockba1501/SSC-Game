@@ -24,6 +24,7 @@ public struct Level
     public int targetEnergy;
     public int targetPoverty;
     public int targetClean;
+    public int maxTurns;
 
 }
 
@@ -84,12 +85,21 @@ public class LevelManager : MonoBehaviour
             boards[i].SetBoard(i + 1, new Building[20, 20]);
         }
       */
+
+        
+
+
         sKeys.energy = 0;
         sKeys.poverty = 0;
         sKeys.population= 0;
         sKeys.clean = 0;
 
         
+    }
+
+    public string GetLevelName()
+    {
+        return "LEVEL " + (currentLevel + 1);
     }
 
     public Level getLevel(int numLevel)
@@ -109,21 +119,23 @@ public class LevelManager : MonoBehaviour
         int i = 0;
         
 
-        levels[i].targetPopulation= 50;
+        levels[i].targetPopulation= 20;
         levels[i].targetEnergy = 0;
         levels[i].targetPoverty = 0;
         levels[i].targetClean = 0;
-        levels[i].levelDescription = string.Format("Level 1: this is an easy one. You must reach a population of {0} people", levels[i].targetPopulation);
-        levels[i].levelSceneName = "Level" + i;
+        levels[i].maxTurns= 100;
+        levels[i].levelDescription = string.Format("Population: {0}", levels[i].targetPopulation);
+        levels[i].levelSceneName = "NewLevel" + i;
 
         i++;
 
-        levels[i].targetPopulation = 50;
-        levels[i].targetEnergy = 10;
-        levels[i].targetPoverty = 30;
-        levels[i].targetClean = 20;
-        levels[i].levelDescription = string.Format("Level 2: now you have to be careful. You must reach a population of {0} people, and the cleaness has to be {1}", levels[i].targetPopulation, levels[i].targetClean);
-        levels[i].levelSceneName = "Level" + i;
+        levels[i].targetPopulation = 30;
+        levels[i].targetEnergy = 0;
+        levels[i].targetPoverty = 0;
+        levels[i].targetClean = 0;
+        levels[i].maxTurns = 7;        
+        levels[i].levelDescription = string.Format("Population: {0}\nMax Turns: {1}", levels[i].targetPopulation, levels[i].maxTurns);
+        levels[i].levelSceneName = "NewLevel" + i;
 
         i++;
         levels[i].targetPopulation = 50;
@@ -184,6 +196,15 @@ public class LevelManager : MonoBehaviour
     }
     */
 
+
+    public bool IsLevelFailed()
+    {
+        if (TurnManager.turnManager.currentTurnNumber > levels[currentLevel].maxTurns)
+            return true;
+        else
+            return false;
+
+    }
     public bool IsLevelFinished()
     {
         if (TEST_MODE)
@@ -225,6 +246,15 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene(levels[currentLevel].levelSceneName);
             return true;
         }
+
+    }
+    public bool ReloadLevel()
+    {
+        
+        Debug.Log("Reload level: Current level= " + currentLevel + " Loading " + levels[currentLevel].levelSceneName);
+        SceneManager.LoadScene(levels[currentLevel].levelSceneName);
+        return true;
+        
 
     }
 

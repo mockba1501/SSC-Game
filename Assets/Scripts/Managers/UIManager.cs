@@ -33,14 +33,18 @@ public class UIManager : MonoBehaviour
     public GameObject buySolarPanelsButton;
     public TextMeshProUGUI buySolarPanelsButtonText;
 
-    public GameObject levelDescription;
+    //public GameObject levelDescription;
     public bool showLevelDescription;
 
-    public TextMeshProUGUI levelDescriptionText;
+    
 
     public GameObject levelCompletedPanel;
     public GameObject gameOverPanel;
-
+    
+    public GameObject levelInfoPanel;
+    public TextMeshProUGUI levelDescriptionText;
+    public TextMeshProUGUI levelName;
+    public GameObject retryPanel;
 
     void Awake()
     {
@@ -52,8 +56,18 @@ public class UIManager : MonoBehaviour
     {        
         if (showLevelDescription)
         {
-            levelDescriptionText.SetText(LevelManager.Instance.GetLevelDescription());
+        //    levelDescriptionText.SetText(LevelManager.Instance.GetLevelDescription());
         }
+
+        //levelInfoPanel= GameObject.Find("Level info panel");
+        if (levelInfoPanel != null)
+        {
+            levelInfoPanel.SetActive(true);
+            levelDescriptionText.SetText(LevelManager.Instance.GetLevelDescription());
+            levelName.SetText(LevelManager.Instance.GetLevelName() + " TARGET");
+        }
+        else
+            Debug.LogWarning("Level info panel not configured");
 
     }
     // Update is called once per frame
@@ -160,6 +174,12 @@ public class UIManager : MonoBehaviour
             else
                 gameOverPanel.SetActive(true);
         }
+        else
+        {
+            if (LevelManager.Instance.IsLevelFailed())
+                retryPanel.SetActive(true);
+                
+        }
 
     }
 
@@ -219,5 +239,9 @@ public class UIManager : MonoBehaviour
         Debug.Log("ExitButtonPressed");
         LevelManager.Instance.ExitGame();
 
+    }
+    public void RetryPressed()
+    {
+        LevelManager.Instance.ReloadLevel();
     }
 }

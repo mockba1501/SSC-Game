@@ -166,7 +166,7 @@ public class UIManager : MonoBehaviour
 
     public void NextTurnButtonPressed(){
         TurnManager.turnManager.NextTurn();
-
+        LevelManager.Instance.UpdateKeys();
         if (LevelManager.Instance.IsLevelFinished())
         {
             if (!LevelManager.Instance.IsLastLevel())

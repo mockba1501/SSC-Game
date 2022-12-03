@@ -25,7 +25,6 @@ public struct Level
     public int targetPoverty;
     public int targetClean;
     public int maxTurns;
-
 }
 
 
@@ -83,13 +82,13 @@ public class LevelManager : MonoBehaviour
         return "LEVEL " + (currentLevel + 1);
     }
 
-    public Level getLevel(int numLevel)
+    public Level getLevel()
     {
-        if (numLevel - 1 < 0 || numLevel - 1 > LEVELS - 1)
+        if (currentLevel < 0 || currentLevel >=  LEVELS )
             throw new ArgumentOutOfRangeException();
         else
         {
-            return levels[numLevel - 1];
+            return levels[currentLevel];
         
         }
     }
@@ -104,7 +103,8 @@ public class LevelManager : MonoBehaviour
         levels[i].targetEnergy = 0;
         levels[i].targetPoverty = 0;
         levels[i].targetClean = 0;
-        levels[i].maxTurns= 1000;
+        levels[i].maxTurns= 1000;        
+
         levels[i].levelDescription = string.Format("Population: {0}", levels[i].targetPopulation);
         levels[i].levelSceneName = "NewLevel" + i;
 
@@ -216,6 +216,15 @@ public class LevelManager : MonoBehaviour
     {
         return currentLevel + 1 == LEVELS;
     }
+
+    public void UpdateKeys()
+    {
+        this.sKeys.population= ResourcesManager.resourcesManager.GetTotalPopulation();
+        this.sKeys.energy= ResourcesManager.resourcesManager.GetEletricProduction();
+        this.sKeys.clean= ResourcesManager.resourcesManager.GetEletricConsumption();
+        this.sKeys.poverty= ResourcesManager.resourcesManager.GetTaxIncome();
+    }
+
     public bool NextLevel()
     {
         currentLevel++;

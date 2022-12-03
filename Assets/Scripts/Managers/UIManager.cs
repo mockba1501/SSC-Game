@@ -69,6 +69,7 @@ public class UIManager : MonoBehaviour
         else
             Debug.LogWarning("Level info panel not configured");
 
+        
     }
     // Update is called once per frame
     void Update()

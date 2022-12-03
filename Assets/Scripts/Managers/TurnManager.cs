@@ -27,21 +27,22 @@ public class TurnManager : MonoBehaviour
         if (GridBuilding.gridBuilding.buildingToBuildInstance != null)
         {
             GridBuilding.gridBuilding.BuildingIndicators(GridBuilding.gridBuilding.buildingToBuildInstance.transform.position);
+           
 
-            if (!LevelManager.Instance.IsLevelFinished())
+        }
+        if (!LevelManager.Instance.IsLevelFinished())
+        {
+            Debug.Log("Level not completed");
+            for (var i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++)
             {
-                Debug.Log("Level not completed");
-                for (var i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++)
-                {
-                    ResourcesManager.resourcesManager.freeMoney += BuildingsManager.buildingManager.buildings[i].taxIncome;
-                }
+                ResourcesManager.resourcesManager.freeMoney += BuildingsManager.buildingManager.buildings[i].taxIncome;
+                Debug.LogFormat("Tax Collection: new budget {0}", ResourcesManager.resourcesManager.freeMoney);
             }
-            else
-            {
-                //show message to player of level completed and give option to move on to next level
-                Debug.Log("Level completed");
-            }
-
+        }
+        else
+        {
+            //show message to player of level completed and give option to move on to next level
+            Debug.Log("Level completed");
         }
     }
 

@@ -9433,7 +9433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f164585bbe977d3539233e7c0ff8928b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeMoney: 100
+  freeMoney: 40
 --- !u!1 &2107842838
 GameObject:
   m_ObjectHideFlags: 0

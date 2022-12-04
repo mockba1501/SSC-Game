@@ -26,24 +26,20 @@ public class GridBuilding : MonoBehaviour
 
     public void Awake(){
         gridBuilding = this;
-    }
-
-    void Start()
-    {
         tileBases.Add(TileType.Empty, null);
         tileBases.Add(TileType.FreeIndicator, freeTile);
         tileBases.Add(TileType.OccupiedIndicator, occupiedTile);
         tileBases.Add(TileType.Building, buildingTile);
     }
 
+    void Start()
+    {
+        
+    }
+
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            TryToPlaceBuilding();
-        }
-
-
         // Check for clicks on tiles
         DetectClickedTile();
     }
@@ -109,8 +105,13 @@ public class GridBuilding : MonoBehaviour
 
 
 
-    public void BuildingIndicators(Vector3 position)
+    public void BuildingIndicators(Vector3 position, Building prebuiltInstance = null)
     {
+
+        if(prebuiltInstance != null){
+            buildingToBuildInstance = prebuiltInstance;
+        }
+        
         ClearArea();
 
         //Vector3 centerPos = new Vector3(position.x - buildingToBuildInstance.area.size.x/2, position.y - buildingToBuildInstance.area.size.y/2, position.z);

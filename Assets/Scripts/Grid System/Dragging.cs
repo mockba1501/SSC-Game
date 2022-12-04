@@ -9,8 +9,15 @@ public class Dragging : MonoBehaviour
     public bool isDragged = false;
 
 
-    private void Awake(){
-        transform.position = SnapCoordinateToGrid(GetMouseWorldPosition());
+    private void Start(){
+        if(GetComponent<Building>().builtByPlayer){
+            transform.position = SnapCoordinateToGrid(GetMouseWorldPosition());
+        }else{
+            transform.position = SnapCoordinateToGrid(transform.position);
+            GridBuilding.gridBuilding.BuildingIndicators(transform.position, GetComponent<Building>());
+            GridBuilding.gridBuilding.buildingToBuildInstance = null;
+            GetComponent<Building>().InitPreplacedBuilding();
+        }
     }
 
 

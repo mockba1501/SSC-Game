@@ -12,6 +12,8 @@ public class CameraController : MonoBehaviour
     float w;
     float h;
 
+    public GameObject cameraBounds;
+
     void Awake()
     {
         camera = this.GetComponent<Camera>();
@@ -32,25 +34,40 @@ public class CameraController : MonoBehaviour
 
     public void MoveCamera(){
 
+
+        // Determine camera offset
+        var cameraWidth = camera.orthographicSize * 2 * (float)Screen.width / Screen.height;
+        var cameraHeight = camera.orthographicSize * 2;
+
+
         // Move right
         if((w - Input.mousePosition.x) <= moveCameraOffset){
-            camera.transform.position += new Vector3(moveSpeed,0,0);
+
+            if((camera.transform.position.x+cameraWidth/2) < cameraBounds.transform.position.x+cameraBounds.GetComponent<SpriteRenderer>().bounds.size.x/2){
+                camera.transform.position += new Vector3(moveSpeed,0,0);
+            }
         }
 
         // Move left
         if((w - Input.mousePosition.x) >= (w-moveCameraOffset)){
-            camera.transform.position -= new Vector3(moveSpeed,0,0);
-        }
 
+            if((camera.transform.position.x - cameraWidth/2) > cameraBounds.transform.position.x-cameraBounds.GetComponent<SpriteRenderer>().bounds.size.x/2){
+                camera.transform.position -= new Vector3(moveSpeed,0,0);
+            }
+        }
 
         // Move top
         if((h - Input.mousePosition.y) <= moveCameraOffset){
-            camera.transform.position += new Vector3(0,moveSpeed,0);
+            if((camera.transform.position.y+cameraHeight/2) < cameraBounds.transform.position.y+cameraBounds.GetComponent<SpriteRenderer>().bounds.size.y/2){
+                camera.transform.position += new Vector3(0,moveSpeed,0);
+            }
         }
 
         // Move bottom
         if((h - Input.mousePosition.y) >= (h-moveCameraOffset)){
-            camera.transform.position -= new Vector3(0,moveSpeed,0);
+            if((camera.transform.position.y-cameraHeight/2) > cameraBounds.transform.position.y-cameraBounds.GetComponent<SpriteRenderer>().bounds.size.y/2){
+                camera.transform.position -= new Vector3(0,moveSpeed,0);
+            }
         }
 
     }

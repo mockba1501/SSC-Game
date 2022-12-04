@@ -7,13 +7,30 @@ public class Building : MonoBehaviour
     // General
     public string buildingName;
     public int price;
+    public int minimalPopulationToBuild;
     public int taxIncome;
+
+    public bool builtByPlayer = true; // If already placed on start of the level than false
     
     //KPIs for level target
     public int population;
     public int poverty;
     public int energy;
     public int clean;
+
+    public float maxHP;
+    public float currentHP;
+    public bool isDestroyed;
+    public GameObject fireParticles;
+
+    public int priceForRemovingFunctionBuilding;    // Should be lower than bellow
+    public int priceForRemovingDestoyedBuilding;    // Eg.: destroyed by fire
+
+    public bool constructionFinished;
+    public int remainingTurnsToFinishConstruction;
+    public Sprite inConstructionSprite;
+    private Sprite finishedSprite; 
+    public Sprite destroyedBuildingSprite;
 
     public bool placed {get; private set; }
     public GameObject destroyParticles;
@@ -37,21 +54,40 @@ public class Building : MonoBehaviour
 
 
     private void Awake(){
-        this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0.7f);
+        if(builtByPlayer){
+            this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0.7f);
+        }
+
+        finishedSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     void Start()
     {
-        
+
     }
 
     void Update(){
         IndicatePowerAvailability();
+
+
+        if(currentHP <= 0){
+            TransformToRuins();
+        }
+    }
+
+
+    public void InitPreplacedBuilding(){
+        Place();
+        remainingTurnsToFinishConstruction = 0;
+        constructionFinished = true;
     }
 
     public bool CanBePlaced(){
-        if(GridBuilding.gridBuilding.CanTakeArea(area) && ResourcesManager.resourcesManager.freeMoney >= price)
-        {
+        if
+        (  GridBuilding.gridBuilding.CanTakeArea(area) &&
+           ResourcesManager.resourcesManager.freeMoney >= price &&
+           ResourcesManager.resourcesManager.GetTotalPopulation() >= minimalPopulationToBuild
+        ){
             return true;
         }
         
@@ -59,13 +95,24 @@ public class Building : MonoBehaviour
     }
 
 
+    public void FinishConstruction(){
+        if(isDestroyed == false){
+            constructionFinished = true;
+            GetComponent<SpriteRenderer>().sprite = finishedSprite;
+        }
+    }
+
     public void Place(){
         placed = true;
         GridBuilding.gridBuilding.TakeArea(area);
         this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
         BuildingsManager.buildingManager.buildings.Add(this);
-        ResourcesManager.resourcesManager.freeMoney -= price;
         LevelManager.Instance.SetKeys(this);
+
+        if(builtByPlayer){
+            GetComponent<SpriteRenderer>().sprite = inConstructionSprite;
+            ResourcesManager.resourcesManager.freeMoney -= price;
+        }
     }
 
 
@@ -81,6 +128,13 @@ public class Building : MonoBehaviour
     }
 
     public void DestroyBuilding(){
+
+        if(isDestroyed){
+            ResourcesManager.resourcesManager.freeMoney -= priceForRemovingDestoyedBuilding;
+        }else{
+            ResourcesManager.resourcesManager.freeMoney -= priceForRemovingFunctionBuilding;
+        }
+
         BuildingsManager.buildingManager.buildings.Remove(this);
         Instantiate(destroyParticles, transform.position, Quaternion.identity);
         GridBuilding.gridBuilding.ClearBuildingArea(area);
@@ -105,6 +159,12 @@ public class Building : MonoBehaviour
     }
 
     public void IndicatePowerAvailability(){
+
+        if(!constructionFinished || isDestroyed){
+            noEletricityWarning.SetActive(false);
+            return;
+        }
+
         if(electricityConsumption > 0){
             if(hasEletricity){
                 noEletricityWarning.SetActive(false);
@@ -117,6 +177,8 @@ public class Building : MonoBehaviour
             }
         }
     }
+
+
     
     public SustKeys GetKeys()
     {
@@ -127,5 +189,36 @@ public class Building : MonoBehaviour
         keys.clean= clean;
 
         return keys;
+    }
+
+
+    public void TransformToRuins(){
+        constructionFinished = true;
+        fireParticles.SetActive(true);
+        GetComponent<SpriteRenderer>().sprite = destroyedBuildingSprite;
+        isDestroyed = true;
+        population = 0;
+        electricityConsumption = 0;
+        electricityProduction = 0;
+        taxIncome = 0;
+        solarPanels.SetActive(false);
+    }
+
+    public int CalculatePriceToFix(){
+        float priceToFix = 0;
+        float remainingPercentage = (currentHP/maxHP) * 100;
+        priceToFix = (price * (100-remainingPercentage)) / 100;
+
+        if(priceToFix <= 0){
+            priceToFix = 1;
+        }
+
+        return (int)priceToFix;
+    }
+
+
+    public void FixBuilding(){
+        ResourcesManager.resourcesManager.freeMoney -= CalculatePriceToFix();
+        currentHP = maxHP;
     }
 }

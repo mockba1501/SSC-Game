@@ -36,6 +36,11 @@ public class UIManager : MonoBehaviour
     //public GameObject levelDescription;
     public bool showLevelDescription;
 
+
+    public GameObject fixBuildingButton;
+    public TextMeshProUGUI fixBuildingButtonText;
+
+
     
 
     public GameObject levelCompletedPanel;
@@ -73,12 +78,32 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
         deleteButton.SetActive(showDeleteButton);
+
+        if(showDeleteButton){
+
+
+            if(BuildingsManager.buildingManager.currentBuilding.isDestroyed){
+                if(ResourcesManager.resourcesManager.freeMoney >= BuildingsManager.buildingManager.currentBuilding.priceForRemovingDestoyedBuilding){
+                    deleteButton.GetComponent<Button>().interactable = true;
+                }else{
+                    deleteButton.GetComponent<Button>().interactable = false;
+                }
+            }else{
+                if(ResourcesManager.resourcesManager.freeMoney >= BuildingsManager.buildingManager.currentBuilding.priceForRemovingFunctionBuilding){
+                    deleteButton.GetComponent<Button>().interactable = true;
+                }else{
+                    deleteButton.GetComponent<Button>().interactable = false;
+                }
+            }
+        }
+
+
+
         placeButton.SetActive(ShowPlaceButton());
         cancelPlacementButton.SetActive(ShowPlaceButton());
         SetBuildingInfoPanel();
+        SetFixBuildingButton();
         SetBuySolarPanelsButton();
 
         eletricProductionText.SetText("Eletric production: "+ResourcesManager.resourcesManager.GetEletricProduction().ToString()+" kw ");
@@ -137,9 +162,28 @@ public class UIManager : MonoBehaviour
 
 
             buildingAttributesText.SetText("");
+            
+            if(building.constructionFinished == false && building.placed){
+                buildingAttributesText.SetText("Building is in construction.\n\n");
+                buildingAttributesText.SetText(buildingAttributesText.text+"Remaining turns to build: "+building.remainingTurnsToFinishConstruction+"\n\n");
+                BuildingInfoPanel.SetActive(true);
+                return;
+            }
+
+            if(building.isDestroyed){
+                buildingAttributesText.SetText("Building was destroyed because it was not maintained.\n\n");
+                buildingAttributesText.SetText(buildingAttributesText.text+"Price to remove rubbish: "+building.priceForRemovingDestoyedBuilding+"$\n\n");
+                BuildingInfoPanel.SetActive(true);
+                return;
+            }else{
+                buildingAttributesText.SetText(buildingAttributesText.text+"Building HP: "+building.currentHP+"/"+building.maxHP+"\n\n");
+                buildingAttributesText.SetText(buildingAttributesText.text+"Price to remove building: "+building.priceForRemovingFunctionBuilding+"$\n\n");
+            }
+
 
             if(building.placed == false){
                 buildingAttributesText.SetText("Price: "+building.price+"\n\n");
+                buildingAttributesText.SetText(buildingAttributesText.text+"Turns to build: "+building.remainingTurnsToFinishConstruction+"\n\n");
             }
 
             if(building.hasEletricity == false && building.placed){
@@ -209,7 +253,12 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        if (building.hasSolarPanels || !building.canHaveSolarPanels)
+        if(BuildingsManager.buildingManager.currentBuilding.isDestroyed){
+            buySolarPanelsButton.SetActive(false);
+            return;
+        }
+
+        if (building.hasSolarPanels || !building.canHaveSolarPanels || !building.constructionFinished)
         {
             buySolarPanelsButton.SetActive(false);
             return;
@@ -243,5 +292,40 @@ public class UIManager : MonoBehaviour
     public void RetryPressed()
     {
         LevelManager.Instance.ReloadLevel();
+    }
+
+
+    public void SetFixBuildingButton(){
+    
+        if(BuildingsManager.buildingManager.currentBuilding == null){
+            fixBuildingButton.SetActive(false);
+            return;
+        }
+
+        if(BuildingsManager.buildingManager.currentBuilding.isDestroyed){
+            fixBuildingButton.SetActive(false);
+            return;
+        }
+
+        // Check if building is damaged
+        if(BuildingsManager.buildingManager.currentBuilding.currentHP < BuildingsManager.buildingManager.currentBuilding.maxHP){
+            
+            fixBuildingButtonText.SetText("Fix building ("+BuildingsManager.buildingManager.currentBuilding.CalculatePriceToFix()+"M)");
+            fixBuildingButton.SetActive(true);
+
+            if(ResourcesManager.resourcesManager.freeMoney >= BuildingsManager.buildingManager.currentBuilding.CalculatePriceToFix()){
+                fixBuildingButton.GetComponent<Button>().interactable = true;
+            }else{
+                fixBuildingButton.GetComponent<Button>().interactable = false;
+            }
+        }else{
+            fixBuildingButton.SetActive(false);
+        }
+    }
+
+    public void fixBuildingButtonPressed(){
+        if(BuildingsManager.buildingManager.currentBuilding){
+            BuildingsManager.buildingManager.currentBuilding.FixBuilding();
+        }
     }
 }

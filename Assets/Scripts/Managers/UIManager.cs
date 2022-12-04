@@ -74,6 +74,7 @@ public class UIManager : MonoBehaviour
         else
             Debug.LogWarning("Level info panel not configured");
 
+        
     }
     // Update is called once per frame
     void Update()
@@ -210,7 +211,7 @@ public class UIManager : MonoBehaviour
 
     public void NextTurnButtonPressed(){
         TurnManager.turnManager.NextTurn();
-
+        LevelManager.Instance.UpdateKeys();
         if (LevelManager.Instance.IsLevelFinished())
         {
             if (!LevelManager.Instance.IsLastLevel())

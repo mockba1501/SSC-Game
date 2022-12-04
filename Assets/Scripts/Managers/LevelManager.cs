@@ -25,7 +25,6 @@ public struct Level
     public int targetPoverty;
     public int targetClean;
     public int maxTurns;
-
 }
 
 
@@ -68,27 +67,8 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-/*        int levelAt = PlayerPrefs.GetInt("levelAt", 2); 
-
-        for (int i = 0; i < lvlButtons.Length; i++)
-        {
-            if (i + 2 > levelAt)
-                lvlButtons[i].interactable = false;
-        }
-*/
         InitializeLevels();
-
-      /*
-        //initialize empty game tiles
-        for (int i = 0; i < LEVELS; i++)
-        {            
-            boards[i].SetBoard(i + 1, new Building[20, 20]);
-        }
-      */
-
         
-
-
         sKeys.energy = 0;
         sKeys.poverty = 0;
         sKeys.population= 0;
@@ -102,13 +82,13 @@ public class LevelManager : MonoBehaviour
         return "LEVEL " + (currentLevel + 1);
     }
 
-    public Level getLevel(int numLevel)
+    public Level getLevel()
     {
-        if (numLevel - 1 < 0 || numLevel - 1 > LEVELS - 1)
+        if (currentLevel < 0 || currentLevel >=  LEVELS )
             throw new ArgumentOutOfRangeException();
         else
         {
-            return levels[numLevel - 1];
+            return levels[currentLevel];
         
         }
     }
@@ -123,7 +103,8 @@ public class LevelManager : MonoBehaviour
         levels[i].targetEnergy = 0;
         levels[i].targetPoverty = 0;
         levels[i].targetClean = 0;
-        levels[i].maxTurns= 100;
+        levels[i].maxTurns= 1000;        
+
         levels[i].levelDescription = string.Format("Population: {0}", levels[i].targetPopulation);
         levels[i].levelSceneName = "NewLevel" + i;
 
@@ -138,28 +119,31 @@ public class LevelManager : MonoBehaviour
         levels[i].levelSceneName = "NewLevel" + i;
 
         i++;
-        levels[i].targetPopulation = 50;
-        levels[i].targetEnergy = 10;
-        levels[i].targetPoverty = 30;
-        levels[i].targetClean = 20;
-        levels[i].levelDescription = string.Format("Level 3: this is serious. You must reach a population of {0} people, energy minimum of {1}, wealth should be {2} and the cleaness has to be {3}", levels[i].targetPopulation, levels[i].targetEnergy, levels[i].targetPoverty, levels[i].targetClean);
-        levels[i].levelSceneName = "Level" + i;
+        levels[i].targetPopulation = 40;
+        levels[i].targetEnergy = 0;
+        levels[i].targetPoverty = 0;
+        levels[i].targetClean = 0;
+        levels[i].maxTurns = 7;
+        levels[i].levelDescription = string.Format("Population: {0}\nMax Turns: {1}", levels[i].targetPopulation, levels[i].maxTurns);
+        levels[i].levelSceneName = "NewLevel" + i;
 
         i++;
-        levels[i].targetPopulation = 50;
-        levels[i].targetEnergy = 10;
-        levels[i].targetPoverty = 30;
-        levels[i].targetClean = 20;
-        levels[i].levelDescription = string.Format("Level 4: this is pro series. You must reach a population of {0} people, energy minimum of {1}, wealth should be {2} and the cleaness has to be {3}", levels[i].targetPopulation, levels[i].targetEnergy, levels[i].targetPoverty, levels[i].targetClean);
-        levels[i].levelSceneName = "Level" + i;
+        levels[i].targetPopulation = 40;
+        levels[i].targetEnergy = 0;
+        levels[i].targetPoverty = 0;
+        levels[i].targetClean = 0;
+        levels[i].maxTurns = 7;
+        levels[i].levelDescription = string.Format("Population: {0}\nMax Turns: {1}", levels[i].targetPopulation, levels[i].maxTurns);
+        levels[i].levelSceneName = "NewLevel" + i;
 
         i++;
-        levels[i].targetPopulation = 50;
-        levels[i].targetEnergy = 10;
-        levels[i].targetPoverty = 30;
-        levels[i].targetClean = 20;
-        levels[i].levelDescription = string.Format("Level 5: Final One! You must reach a population of {0} people, energy minimum of {1}, wealth should be {2} and the cleaness has to be {3}", levels[i].targetPopulation, levels[i].targetEnergy, levels[i].targetPoverty, levels[i].targetClean);
-        levels[i].levelSceneName = "Level" + i;
+        levels[i].targetPopulation = 60;
+        levels[i].targetEnergy = 0;
+        levels[i].targetPoverty = 0;
+        levels[i].targetClean = 0;
+        levels[i].maxTurns = 7;
+        levels[i].levelDescription = string.Format("Population: {0}\nMax Turns: {1}", levels[i].targetPopulation, levels[i].maxTurns);
+        levels[i].levelSceneName = "NewLevel" + i;
     }
 
     // Update is called once per frame
@@ -232,6 +216,15 @@ public class LevelManager : MonoBehaviour
     {
         return currentLevel + 1 == LEVELS;
     }
+
+    public void UpdateKeys()
+    {
+        this.sKeys.population= ResourcesManager.resourcesManager.GetTotalPopulation();
+        this.sKeys.energy= ResourcesManager.resourcesManager.GetEletricProduction();
+        this.sKeys.clean= ResourcesManager.resourcesManager.GetEletricConsumption();
+        this.sKeys.poverty= ResourcesManager.resourcesManager.GetTaxIncome();
+    }
+
     public bool NextLevel()
     {
         currentLevel++;
@@ -274,4 +267,5 @@ public class LevelManager : MonoBehaviour
         //Debug.Log("Current level= " + currentLevel);
         return levels[currentLevel].levelDescription;
     }
+   
 }

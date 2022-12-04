@@ -107,7 +107,6 @@ public class Building : MonoBehaviour
         GridBuilding.gridBuilding.TakeArea(area);
         this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
         BuildingsManager.buildingManager.buildings.Add(this);
-        LevelManager.Instance.SetKeys(this);
 
         if(builtByPlayer){
             GetComponent<SpriteRenderer>().sprite = inConstructionSprite;

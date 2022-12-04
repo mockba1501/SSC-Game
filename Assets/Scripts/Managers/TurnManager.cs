@@ -45,7 +45,9 @@ public class TurnManager : MonoBehaviour
 
                     continue;
                 }
+                
                 ResourcesManager.resourcesManager.freeMoney += BuildingsManager.buildingManager.buildings[i].taxIncome;
+                Debug.LogFormat("Tax Collection: new budget {0}", ResourcesManager.resourcesManager.freeMoney);
             }
         }
         else

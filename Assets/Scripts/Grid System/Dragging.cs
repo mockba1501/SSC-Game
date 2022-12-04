@@ -39,7 +39,7 @@ public class Dragging : MonoBehaviour
     private void OnMouseDrag(){
         if(!this.GetComponent<Building>().placed){
             transform.position = SnapCoordinateToGrid(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            GridBuilding.gridBuilding.BuildingIndicators(SnapCoordinateToGrid(GetMouseWorldPosition()));
+            GridBuilding.gridBuilding.BuildingIndicators(SnapCoordinateToGrid(GetMouseWorldPosition()), GetComponent<Building>());
         }
     }
 

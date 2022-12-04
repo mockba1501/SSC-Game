@@ -51,6 +51,14 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI levelName;
     public GameObject retryPanel;
 
+
+    //audios
+    public AudioSource cancelAudio;
+    public AudioSource fixBuildingAudio;
+    public AudioSource nextTurnAudio;
+    public AudioSource placeBuildingAudio;
+
+
     void Awake()
     {
         uiManager = this;
@@ -136,10 +144,12 @@ public class UIManager : MonoBehaviour
 
     public void PlaceButtonPressed(){
         GridBuilding.gridBuilding.TryToPlaceBuilding();
+        placeBuildingAudio.Play();
     }
 
     public void CancelPlacementButtonPressed(){
         GridBuilding.gridBuilding.CancelPlacement();
+        cancelAudio.Play();
     }
 
     public bool ShowPlaceButton(){
@@ -219,6 +229,7 @@ public class UIManager : MonoBehaviour
         TurnManager.turnManager.NextTurn();
         LevelManager.Instance.UpdateKeys();
 
+        nextTurnAudio.Play();
 
         // if (LevelManager.Instance.IsLevelFinished())
         // {
@@ -335,6 +346,7 @@ public class UIManager : MonoBehaviour
     public void fixBuildingButtonPressed(){
         if(BuildingsManager.buildingManager.currentBuilding){
             BuildingsManager.buildingManager.currentBuilding.FixBuilding();
+            fixBuildingAudio.Play();
         }
     }
 }

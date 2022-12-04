@@ -6043,6 +6043,7 @@ MonoBehaviour:
   price: 20
   minimalPopulationToBuild: 0
   taxIncome: 15
+  builtByPlayer: 1
   population: 15
   poverty: 0
   energy: 0

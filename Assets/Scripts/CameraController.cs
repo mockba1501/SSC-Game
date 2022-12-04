@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController cameraController;
     public bool allowMovingCamera = true;
     public int moveCameraOffset = 30;
     public float moveSpeed = 0.01f;
@@ -16,6 +17,7 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
+        cameraController = this;
         camera = this.GetComponent<Camera>();
         canvas = FindObjectOfType<Canvas>(); 
         h = canvas.GetComponent<RectTransform>().rect.height;

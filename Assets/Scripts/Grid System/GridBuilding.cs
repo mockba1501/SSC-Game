@@ -48,7 +48,7 @@ public class GridBuilding : MonoBehaviour
 
     public void InitializeBuilding(GameObject building)
     {
-        buildingToBuildInstance = Instantiate(building).GetComponent<Building>();
+        buildingToBuildInstance = Instantiate(building, CameraController.cameraController.GetComponent<Camera>().transform.position, Quaternion.identity).GetComponent<Building>();
         BuildingIndicators(buildingToBuildInstance.transform.position, buildingToBuildInstance);
     }
 

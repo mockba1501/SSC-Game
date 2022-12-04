@@ -79,6 +79,12 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        if(LevelRestrictor.levelRestrictor.canRemoveBuildings == false){
+            showDeleteButton = false;
+        }
+        
         deleteButton.SetActive(showDeleteButton);
 
         if(showDeleteButton){
@@ -256,7 +262,7 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        if(BuildingsManager.buildingManager.currentBuilding.isDestroyed){
+        if(BuildingsManager.buildingManager.currentBuilding.isDestroyed || !LevelRestrictor.levelRestrictor.canBuiltSolarPanels){
             buySolarPanelsButton.SetActive(false);
             return;
         }
@@ -305,7 +311,7 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        if(BuildingsManager.buildingManager.currentBuilding.isDestroyed){
+        if(BuildingsManager.buildingManager.currentBuilding.isDestroyed || !LevelRestrictor.levelRestrictor.canFixBuildings){
             fixBuildingButton.SetActive(false);
             return;
         }

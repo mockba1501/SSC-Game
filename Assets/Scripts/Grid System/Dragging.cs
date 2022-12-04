@@ -11,7 +11,7 @@ public class Dragging : MonoBehaviour
 
     private void Start(){
         if(GetComponent<Building>().builtByPlayer){
-            transform.position = SnapCoordinateToGrid(GetMouseWorldPosition());
+            transform.position = SnapCoordinateToGrid(CameraController.cameraController.GetComponent<Camera>().transform.position);
         }else{
             transform.position = SnapCoordinateToGrid(transform.position);
             GridBuilding.gridBuilding.BuildingIndicators(transform.position, GetComponent<Building>());

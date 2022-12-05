@@ -36,6 +36,10 @@ public class BuildingsManager : MonoBehaviour
 
         for(int i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++){
 
+            if(BuildingsManager.buildingManager.buildings[i].constructionFinished == false){
+                continue;
+            }
+
             int consumtionOfCurBuilding;
             if(BuildingsManager.buildingManager.buildings[i].hasSolarPanels){
                 consumtionOfCurBuilding = BuildingsManager.buildingManager.buildings[i].GetConsumptionWithSolarPanels();

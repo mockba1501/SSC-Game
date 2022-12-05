@@ -19,6 +19,17 @@ public class Dragging : MonoBehaviour
             Debug.LogWarningFormat("Exception: {0}", e);
         }
     }
+    private void Start()
+    {
+        if(GetComponent<Building>().builtByPlayer){
+            transform.position = SnapCoordinateToGrid(CameraController.cameraController.GetComponent<Camera>().transform.position);
+        }else{
+            transform.position = SnapCoordinateToGrid(transform.position);
+            GridBuilding.gridBuilding.BuildingIndicators(transform.position, GetComponent<Building>());
+            GridBuilding.gridBuilding.buildingToBuildInstance = null;
+            GetComponent<Building>().InitPreplacedBuilding();
+        }
+    }
 
 
     private void OnMouseDown(){
@@ -39,7 +50,7 @@ public class Dragging : MonoBehaviour
     private void OnMouseDrag(){
         if(!this.GetComponent<Building>().placed){
             transform.position = SnapCoordinateToGrid(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            GridBuilding.gridBuilding.BuildingIndicators(SnapCoordinateToGrid(GetMouseWorldPosition()));
+            GridBuilding.gridBuilding.BuildingIndicators(SnapCoordinateToGrid(GetMouseWorldPosition()), GetComponent<Building>());
         }
     }
 

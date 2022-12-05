@@ -26,15 +26,26 @@ public class TurnManager : MonoBehaviour
         // Reset building indicators
         if (GridBuilding.gridBuilding.buildingToBuildInstance != null)
         {
-            GridBuilding.gridBuilding.BuildingIndicators(GridBuilding.gridBuilding.buildingToBuildInstance.transform.position);
-           
-
+            GridBuilding.gridBuilding.CancelPlacement();
         }
+
         if (!LevelManager.Instance.IsLevelFinished())
         {
             Debug.Log("Level not completed");
             for (var i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++)
             {
+                if(BuildingsManager.buildingManager.buildings[i].constructionFinished == false){
+
+                    Debug.Log("Building");
+                    BuildingsManager.buildingManager.buildings[i].remainingTurnsToFinishConstruction--;
+
+                    if(BuildingsManager.buildingManager.buildings[i].remainingTurnsToFinishConstruction <= 0){
+                        BuildingsManager.buildingManager.buildings[i].FinishConstruction();
+                    }
+
+                    continue;
+                }
+                
                 ResourcesManager.resourcesManager.freeMoney += BuildingsManager.buildingManager.buildings[i].taxIncome;
                 Debug.LogFormat("Tax Collection: new budget {0}", ResourcesManager.resourcesManager.freeMoney);
             }
@@ -45,7 +56,4 @@ public class TurnManager : MonoBehaviour
             Debug.Log("Level completed");
         }
     }
-
-  
-
 }

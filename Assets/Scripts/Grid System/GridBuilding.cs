@@ -40,11 +40,6 @@ public class GridBuilding : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            TryToPlaceBuilding();
-        }
-
-
         // Check for clicks on tiles
         DetectClickedTile();
     }
@@ -53,8 +48,8 @@ public class GridBuilding : MonoBehaviour
 
     public void InitializeBuilding(GameObject building)
     {
-        buildingToBuildInstance = Instantiate(building).GetComponent<Building>();
-        BuildingIndicators(buildingToBuildInstance.transform.position);
+        buildingToBuildInstance = Instantiate(building, CameraController.cameraController.GetComponent<Camera>().transform.position, Quaternion.identity).GetComponent<Building>();
+        BuildingIndicators(buildingToBuildInstance.transform.position, buildingToBuildInstance);
     }
 
 
@@ -110,21 +105,20 @@ public class GridBuilding : MonoBehaviour
 
 
 
-    public void BuildingIndicators(Vector3 position)
+    public void BuildingIndicators(Vector3 position, Building buildingInstance = null)
     {
+
         ClearArea();
 
-        //Vector3 centerPos = new Vector3(position.x - buildingToBuildInstance.area.size.x/2, position.y - buildingToBuildInstance.area.size.y/2, position.z);
+        Vector3 centerPos = new Vector3(position.x, position.y - buildingInstance.area.size.y/2, position.z);
 
-        Vector3 centerPos = new Vector3(position.x, position.y - buildingToBuildInstance.area.size.y/2, position.z);
+        buildingInstance.area.position = gridLayout.WorldToCell(centerPos);
 
-        buildingToBuildInstance.area.position = gridLayout.WorldToCell(centerPos);
-
-        if(!buildingToBuildInstance.hasClearCenter){
-            //buildingToBuildInstance.transform.position -= new Vector3(0,0.5f,0);
+        if(!buildingInstance.hasClearCenter){
+            //buildingInstance.transform.position -= new Vector3(0,0.5f,0);
         }
 
-        BoundsInt buildingArea = buildingToBuildInstance.area;
+        BoundsInt buildingArea = buildingInstance.area;
 
         TileBase[] baseArray = GetTilesBlock(buildingArea, buildingsTilemap);
 
@@ -133,17 +127,17 @@ public class GridBuilding : MonoBehaviour
 
         for(int i = 0; i < baseArray.Length; i++){
             if(baseArray[i] == null){
-                if(ResourcesManager.resourcesManager.freeMoney >= buildingToBuildInstance.price){
+                if(ResourcesManager.resourcesManager.freeMoney >= buildingInstance.price){
                     tileArray[i] = tileBases[TileType.FreeIndicator];
-                    buildingToBuildInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1f,1f,0.7f);
+                    buildingInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1f,1f,0.7f);
                 }else{
                     FillTiles(tileArray, TileType.OccupiedIndicator);
 
-                    buildingToBuildInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
+                    buildingInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
                 }
             }else{
                 FillTiles(tileArray, TileType.OccupiedIndicator);
-                buildingToBuildInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
+                buildingInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
             }
         }
 

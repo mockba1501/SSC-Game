@@ -963,6 +963,7 @@ MonoBehaviour:
   allowMovingCamera: 1
   moveCameraOffset: 10
   moveSpeed: 0.03
+  cameraBounds: {fileID: 0}
 --- !u!1 &259155834
 GameObject:
   m_ObjectHideFlags: 0
@@ -10295,9 +10296,60 @@ Transform:
   - {fileID: 154194419}
   - {fileID: 348450372}
   - {fileID: 2099457264}
+  - {fileID: 1582613459}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1582613458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1582613459}
+  - component: {fileID: 1582613460}
+  m_Layer: 0
+  m_Name: Level Restrictor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1582613459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582613458}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1555086870}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1582613460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582613458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efea0528c2a9a3a28971105a453d7725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBuiltSolarPanels: 1
+  canFixBuildings: 1
+  canRemoveBuildings: 1
+  prohibitedBuildings:
+  - {fileID: 4089894755315086872, guid: 7273dc8d5c1a178f7a4d1c167804ade9, type: 3}
+  - {fileID: 4089894755315086872, guid: 3515ae71b3f4b7b68b86b892a472cdff, type: 3}
 --- !u!1 &1596572150 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6229936961925413809, guid: f46315c3156474c40a1e994aa01541b3, type: 3}
@@ -10608,6 +10660,8 @@ MonoBehaviour:
   buySolarPanelsButton: {fileID: 1890377095}
   buySolarPanelsButtonText: {fileID: 1403501950}
   showLevelDescription: 0
+  fixBuildingButton: {fileID: 0}
+  fixBuildingButtonText: {fileID: 0}
   levelCompletedPanel: {fileID: 1263855884}
   gameOverPanel: {fileID: 2008264330}
   levelInfoPanel: {fileID: 1596572150}
@@ -11297,11 +11351,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Medium house
   price: 15
+  minimalPopulationToBuild: 0
   taxIncome: 5
+  builtByPlayer: 1
   population: 10
   poverty: 0
   energy: 0
   clean: 0
+  maxHP: 0
+  currentHP: 0
+  isDestroyed: 0
+  fireParticles: {fileID: 0}
+  priceForRemovingFunctionBuilding: 0
+  priceForRemovingDestoyedBuilding: 0
+  constructionFinished: 0
+  remainingTurnsToFinishConstruction: 0
+  inConstructionSprite: {fileID: 0}
+  destroyedBuildingSprite: {fileID: 0}
   destroyParticles: {fileID: 4255513312635838129, guid: 5b7ecd43049b5de089446477ac916802, type: 3}
   area:
     m_Position: {x: -10, y: 2, z: 0}

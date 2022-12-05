@@ -129,7 +129,6 @@ public class LevelManager : MonoBehaviour
     }
     public bool IsLevelFinished()
     {
-        return false;
         
         if (TEST_MODE)
         {

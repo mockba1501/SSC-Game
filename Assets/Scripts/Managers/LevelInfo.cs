@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelInfo : MonoBehaviour
 {
 
+    public string levelName; 
     public string levelDescription;
     public string nextLevel;
     public int targetPopulation;
@@ -12,6 +13,7 @@ public class LevelInfo : MonoBehaviour
     public int targetPoverty;
     public int targetClean;
     public int maxTurns;
+    public bool isLastLevel;
 
     // Start is called before the first frame update
     void Start()

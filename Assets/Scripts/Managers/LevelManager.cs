@@ -19,11 +19,7 @@ public struct SustKeys
 
 public class LevelManager : MonoBehaviour
 {
-    
-    //public static LevelManager instance;
-    
-    const int LEVELS = 5;
-    int currentLevel = 0;
+        
     public int TestNumberOfTurnsToPassLevel = 5;
     private int TestNumberOfTurnsToPassLevelCounter = 0;
     public bool TEST_MODE;
@@ -40,7 +36,7 @@ public class LevelManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -53,12 +49,10 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //InitializeLevels();
-        levelInfo= GetComponent<LevelInfo>();
-        if (levelInfo == null)
-        {
-            Debug.LogWarning("Cannot find LevelInfo, please add LevelInfo component to the LevelManager");
-        }
+        Debug.Log("LevelManager.Start");
+
+        levelInfo = GetLevelInfo();
+        
         
         sKeys.energy = 0;
         sKeys.poverty = 0;
@@ -68,66 +62,34 @@ public class LevelManager : MonoBehaviour
         
     }
 
+    LevelInfo GetLevelInfo()
+    {
+        if (levelInfo==null)
+        {
+            levelInfo = GetComponent<LevelInfo>();
+            if (levelInfo == null)
+            {
+                Debug.LogWarning("Cannot find LevelInfo, please add LevelInfo component to the LevelManager");
+                return null;
+            }
+            else
+            {
+                return levelInfo;
+            }
+        }
+        else
+        {
+            return levelInfo;
+        }
+    }
+
     public string GetLevelName()
     {
-        return "LEVEL " + (currentLevel + 1);
+        return GetLevelInfo().levelName;
     }
 
     
-    /*
-    private void InitializeLevels()
-    {
-
-        int i = 0;
-        
-
-        levels[i].targetPopulation= 20;
-        levels[i].targetEnergy = 0;
-        levels[i].targetPoverty = 0;
-        levels[i].targetClean = 0;
-        levels[i].maxTurns= 1000;        
-
-        levels[i].levelDescription = string.Format("Population: {0}", levels[i].targetPopulation);
-        levels[i].levelSceneName = "NewLevel" + i;
-
-        i++;
-
-        levels[i].targetPopulation = 30;
-        levels[i].targetEnergy = 0;
-        levels[i].targetPoverty = 0;
-        levels[i].targetClean = 0;
-        levels[i].maxTurns = 7;        
-        levels[i].levelDescription = string.Format("Population: {0}\nMax Turns: {1}", levels[i].targetPopulation, levels[i].maxTurns);
-        levels[i].levelSceneName = "NewLevel" + i;
-
-        i++;
-        levels[i].targetPopulation = 40;
-        levels[i].targetEnergy = 0;
-        levels[i].targetPoverty = 0;
-        levels[i].targetClean = 0;
-        levels[i].maxTurns = 7;
-        levels[i].levelDescription = string.Format("Population: {0}\nMax Turns: {1}", levels[i].targetPopulation, levels[i].maxTurns);
-        levels[i].levelSceneName = "NewLevel" + i;
-
-        i++;
-        levels[i].targetPopulation = 40;
-        levels[i].targetEnergy = 0;
-        levels[i].targetPoverty = 0;
-        levels[i].targetClean = 0;
-        levels[i].maxTurns = 7;
-        levels[i].levelDescription = string.Format("Population: {0}\nMax Turns: {1}", levels[i].targetPopulation, levels[i].maxTurns);
-        levels[i].levelSceneName = "NewLevel" + i;
-
-        i++;
-        levels[i].targetPopulation = 60;
-        levels[i].targetEnergy = 0;
-        levels[i].targetPoverty = 0;
-        levels[i].targetClean = 0;
-        levels[i].maxTurns = 7;
-        levels[i].levelDescription = string.Format("Population: {0}\nMax Turns: {1}", levels[i].targetPopulation, levels[i].maxTurns);
-        levels[i].levelSceneName = "NewLevel" + i;
-    }
-    */
+    
     // Update is called once per frame
     void Update()
     {
@@ -155,17 +117,11 @@ public class LevelManager : MonoBehaviour
         Debug.Log(log);
     }
 
-    /*
-    bool IsTileEmpty(int level, int x, int y)
-    {
-        return boards[level].GetTiles()[x,y] == null;
-    }
-    */
-
+    
 
     public bool IsLevelFailed()
     {
-        if (TurnManager.turnManager.currentTurnNumber > levelInfo.maxTurns)
+        if (TurnManager.turnManager.currentTurnNumber > GetLevelInfo().maxTurns)
             return true;
         else
             return false;
@@ -185,10 +141,10 @@ public class LevelManager : MonoBehaviour
         else
         {
             bool levelFinished = true;
-            levelFinished &= levelInfo.targetClean <= sKeys.clean;
-            levelFinished &= levelInfo.targetPopulation <= sKeys.population;
-            levelFinished &= levelInfo.targetEnergy <= sKeys.energy;
-            levelFinished &= levelInfo.targetPoverty <= sKeys.poverty;
+            levelFinished &= GetLevelInfo().targetClean <= sKeys.clean;
+            levelFinished &= GetLevelInfo().targetPopulation <= sKeys.population;
+            levelFinished &= GetLevelInfo().targetEnergy <= sKeys.energy;
+            levelFinished &= GetLevelInfo().targetPoverty <= sKeys.poverty;
             return levelFinished;
         }
         return false;
@@ -196,7 +152,7 @@ public class LevelManager : MonoBehaviour
 
     public bool IsLastLevel()
     {
-        return currentLevel + 1 == LEVELS;
+        return GetLevelInfo().isLastLevel;
     }
 
     public void UpdateKeys()
@@ -209,16 +165,17 @@ public class LevelManager : MonoBehaviour
 
     public bool NextLevel()
     {
-        currentLevel++;
-        if (currentLevel == LEVELS)
+        
+        if (GetLevelInfo().isLastLevel)
         {
             Debug.Log("Max levels reached. Endgame");
             return false;
         }
         else
         {
-            Debug.Log("NextLevel: Current level= " + currentLevel + " Loading " + levelInfo.nextLevel);
-            SceneManager.LoadScene(levelInfo.nextLevel);
+            Debug.Log("NextLevel: Current level= " + GetLevelInfo().levelName + " Loading " + GetLevelInfo().nextLevel);
+            SceneManager.LoadScene(GetLevelInfo().nextLevel);
+            levelInfo = null;
             return true;
         }
 
@@ -226,8 +183,9 @@ public class LevelManager : MonoBehaviour
     public bool ReloadLevel()
     {
         
-        Debug.Log("Reload level: Current level= " + currentLevel + " Loading " + SceneManager.GetActiveScene().name);
+        Debug.Log("Reload level: Current level= " + GetLevelInfo().levelName  + " Loading " + SceneManager.GetActiveScene().name);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        levelInfo = null;
         return true;
         
 
@@ -247,7 +205,7 @@ public class LevelManager : MonoBehaviour
     public string GetLevelDescription()
     {
         //Debug.Log("Current level= " + currentLevel);
-        return levelInfo.levelDescription.Replace('|', '\n');
+        return GetLevelInfo().levelDescription.Replace('|', '\n');
     }
    
 }

@@ -15,7 +15,7 @@ public class Building : MonoBehaviour
     public int energy;
     public int clean;
 
-    public bool placed {get; private set; }
+    public bool placed { get; private set; }
     public GameObject destroyParticles;
     public BoundsInt area;
     public bool hasClearCenter = true;
@@ -68,6 +68,7 @@ public class Building : MonoBehaviour
         //LevelManager.Instance.SetKeys(this);
     }
 
+    
 
     public void OnMouseOver(){
         if(Input.GetMouseButtonDown(0) && placed){
@@ -127,5 +128,13 @@ public class Building : MonoBehaviour
         keys.clean= clean;
 
         return keys;
+    }
+
+    public void InitialPlace()
+    {
+        Debug.LogFormat("Placing building {0}", name);
+        placed = true;
+        GridBuilding.gridBuilding.TakeArea(area);
+        this.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);        
     }
 }

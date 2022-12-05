@@ -10,7 +10,14 @@ public class Dragging : MonoBehaviour
 
 
     private void Awake(){
-        transform.position = SnapCoordinateToGrid(GetMouseWorldPosition());
+        try
+        {
+            transform.position = SnapCoordinateToGrid(GetMouseWorldPosition());
+        }
+        catch(System.Exception e)
+        {
+            Debug.LogWarningFormat("Exception: {0}", e);
+        }
     }
 
 

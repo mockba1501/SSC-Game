@@ -16,34 +16,20 @@ public struct SustKeys
 }
 
 
-public struct Level
-{
-    public string levelDescription;
-    public string levelSceneName;
-    public int targetPopulation;
-    public int targetEnergy;
-    public int targetPoverty;
-    public int targetClean;
-    public int maxTurns;
-}
-
-
 
 public class LevelManager : MonoBehaviour
 {
     
     //public static LevelManager instance;
-
-    public Button[] lvlButtons;
+    
     const int LEVELS = 5;
     int currentLevel = 0;
     public int TestNumberOfTurnsToPassLevel = 5;
     private int TestNumberOfTurnsToPassLevelCounter = 0;
     public bool TEST_MODE;
+    LevelInfo levelInfo;
 
-    Level[] levels = new Level[LEVELS];
-
-
+    
     public static LevelManager Instance { get; private set; }
     
 
@@ -67,7 +53,12 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitializeLevels();
+        //InitializeLevels();
+        levelInfo= GetComponent<LevelInfo>();
+        if (levelInfo == null)
+        {
+            Debug.LogWarning("Cannot find LevelInfo, please add LevelInfo component to the LevelManager");
+        }
         
         sKeys.energy = 0;
         sKeys.poverty = 0;
@@ -82,17 +73,8 @@ public class LevelManager : MonoBehaviour
         return "LEVEL " + (currentLevel + 1);
     }
 
-    public Level getLevel()
-    {
-        if (currentLevel < 0 || currentLevel >=  LEVELS )
-            throw new ArgumentOutOfRangeException();
-        else
-        {
-            return levels[currentLevel];
-        
-        }
-    }
-
+    
+    /*
     private void InitializeLevels()
     {
 
@@ -145,7 +127,7 @@ public class LevelManager : MonoBehaviour
         levels[i].levelDescription = string.Format("Population: {0}\nMax Turns: {1}", levels[i].targetPopulation, levels[i].maxTurns);
         levels[i].levelSceneName = "NewLevel" + i;
     }
-
+    */
     // Update is called once per frame
     void Update()
     {
@@ -183,7 +165,7 @@ public class LevelManager : MonoBehaviour
 
     public bool IsLevelFailed()
     {
-        if (TurnManager.turnManager.currentTurnNumber > levels[currentLevel].maxTurns)
+        if (TurnManager.turnManager.currentTurnNumber > levelInfo.maxTurns)
             return true;
         else
             return false;
@@ -203,10 +185,10 @@ public class LevelManager : MonoBehaviour
         else
         {
             bool levelFinished = true;
-            levelFinished &= levels[currentLevel].targetClean <= sKeys.clean;
-            levelFinished &= levels[currentLevel].targetPopulation <= sKeys.population;
-            levelFinished &= levels[currentLevel].targetEnergy <= sKeys.energy;
-            levelFinished &= levels[currentLevel].targetPoverty <= sKeys.poverty;
+            levelFinished &= levelInfo.targetClean <= sKeys.clean;
+            levelFinished &= levelInfo.targetPopulation <= sKeys.population;
+            levelFinished &= levelInfo.targetEnergy <= sKeys.energy;
+            levelFinished &= levelInfo.targetPoverty <= sKeys.poverty;
             return levelFinished;
         }
         return false;
@@ -235,8 +217,8 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("NextLevel: Current level= " + currentLevel + " Loading " + levels[currentLevel].levelSceneName);
-            SceneManager.LoadScene(levels[currentLevel].levelSceneName);
+            Debug.Log("NextLevel: Current level= " + currentLevel + " Loading " + levelInfo.nextLevel);
+            SceneManager.LoadScene(levelInfo.nextLevel);
             return true;
         }
 
@@ -244,8 +226,8 @@ public class LevelManager : MonoBehaviour
     public bool ReloadLevel()
     {
         
-        Debug.Log("Reload level: Current level= " + currentLevel + " Loading " + levels[currentLevel].levelSceneName);
-        SceneManager.LoadScene(levels[currentLevel].levelSceneName);
+        Debug.Log("Reload level: Current level= " + currentLevel + " Loading " + SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         return true;
         
 
@@ -265,7 +247,7 @@ public class LevelManager : MonoBehaviour
     public string GetLevelDescription()
     {
         //Debug.Log("Current level= " + currentLevel);
-        return levels[currentLevel].levelDescription;
+        return levelInfo.levelDescription.Replace('|', '\n');
     }
    
 }

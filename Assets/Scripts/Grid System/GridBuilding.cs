@@ -26,14 +26,15 @@ public class GridBuilding : MonoBehaviour
 
     public void Awake(){
         gridBuilding = this;
-    }
-
-    void Start()
-    {
         tileBases.Add(TileType.Empty, null);
         tileBases.Add(TileType.FreeIndicator, freeTile);
         tileBases.Add(TileType.OccupiedIndicator, occupiedTile);
         tileBases.Add(TileType.Building, buildingTile);
+    }
+
+    void Start()
+    {
+        
     }
 
 

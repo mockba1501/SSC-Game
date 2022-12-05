@@ -14,6 +14,16 @@ public class BuildingsManager : MonoBehaviour
         buildingManager = this;
     }
 
+
+    void Start()
+    {
+        Debug.Log("BuildingManager Start");
+        foreach(Building b in buildings)
+        {
+            b.InitialPlace();
+        }
+        
+    }
     // Update is called once per frame
     void Update()
     {

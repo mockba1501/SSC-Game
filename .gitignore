@@ -73,3 +73,4 @@ crashlytics-build.properties
 *.log
 *.log
 HW1-Movement/Library/StateCache/MainStageHierarchy/05/05aac79fa41c848e49317a9edd317502.json
+.DS_Store

@@ -9,7 +9,18 @@ public class Dragging : MonoBehaviour
     public bool isDragged = false;
 
 
-    private void Start(){
+    private void Awake(){
+        try
+        {
+            transform.position = SnapCoordinateToGrid(GetMouseWorldPosition());
+        }
+        catch(System.Exception e)
+        {
+            Debug.LogWarningFormat("Exception: {0}", e);
+        }
+    }
+    private void Start()
+    {
         if(GetComponent<Building>().builtByPlayer){
             transform.position = SnapCoordinateToGrid(CameraController.cameraController.GetComponent<Camera>().transform.position);
         }else{

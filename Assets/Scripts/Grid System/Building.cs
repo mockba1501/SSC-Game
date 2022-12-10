@@ -114,6 +114,7 @@ public class Building : MonoBehaviour
         }
     }
 
+    
 
     public void OnMouseOver(){
         if(Input.GetMouseButtonDown(0) && placed){
@@ -190,6 +191,13 @@ public class Building : MonoBehaviour
         return keys;
     }
 
+    public void InitialPlace()
+    {
+        Debug.LogFormat("Placing building {0}", name);
+        placed = true;
+        GridBuilding.gridBuilding.TakeArea(area);
+        this.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);        
+    }
 
     public void TransformToRuins(){
         constructionFinished = true;

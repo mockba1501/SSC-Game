@@ -72,6 +72,7 @@ public class ResourcesManager : MonoBehaviour
 
     public int GetTotalPopulation(){
         int population = 0;
+        
         for(int i = 0; i < BuildingsManager.buildingManager.buildings.Count; i++){
             if(BuildingsManager.buildingManager.buildings[i].constructionFinished == false){
                 continue;

@@ -219,20 +219,19 @@ public class UIManager : MonoBehaviour
         TurnManager.turnManager.NextTurn();
         LevelManager.Instance.UpdateKeys();
 
-
-        // if (LevelManager.Instance.IsLevelFinished())
-        // {
-        //     if (!LevelManager.Instance.IsLastLevel())
-        //         levelCompletedPanel.SetActive(true);
-        //     else
-        //         gameOverPanel.SetActive(true);
-        // }
-        // else
-        // {
-        //     if (LevelManager.Instance.IsLevelFailed())
-        //         retryPanel.SetActive(true);
-                
-        // }
+        if (LevelManager.Instance.IsLevelFinished())
+        {
+            if (!LevelManager.Instance.IsLastLevel())
+                levelCompletedPanel.SetActive(true);
+            else
+                gameOverPanel.SetActive(true);
+        }
+        else
+        {
+            if (LevelManager.Instance.IsLevelFailed())
+                retryPanel.SetActive(true);
+             
+        }
 
     }
 

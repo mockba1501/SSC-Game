@@ -22,7 +22,8 @@ public class BuildingsManager : MonoBehaviour
         {
             b.InitialPlace();
         }
-        
+        Debug.LogFormat("BuildingManager Start: number of buildings: {0}", BuildingsManager.buildingManager.buildings.Count);
+
     }
     // Update is called once per frame
     void Update()

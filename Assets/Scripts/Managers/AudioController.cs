@@ -9,6 +9,16 @@ public class AudioController : MonoBehaviour
     public AudioSource sfxForBtns;
 
     public AudioClip clickAudio;
+
+    //audios
+    public AudioSource mainMenu;
+    public AudioSource cancelAudio;
+    public AudioSource fixBuildingAudio;
+    public AudioSource nextTurnAudio;
+    public AudioSource placeBuildingAudio;
+    public AudioSource nextLevelAudio;
+    public AudioSource backrgroundAudio;
+
     private void Awake()
     {
         if(audioController == null)
@@ -31,4 +41,37 @@ public class AudioController : MonoBehaviour
         sfxForBtns.volume = PlayerPrefs.GetFloat(UISettingContontoller.sfx);
     }
 
+    public void PlaceBuildingPlay()
+    {
+        placeBuildingAudio.Play();
+    }
+
+    public void MainMenuPlay()
+    {
+        mainMenu.Play();
+    }
+
+    public void CancelButtonPlay()
+    {
+        cancelAudio.Play();
+    }
+    public void FixBuildingPlay()
+    {
+        fixBuildingAudio.Play();
+    }
+
+    public void NextTurnPlay()
+    {
+        nextTurnAudio.Play();
+    }
+
+    public void NextLevelPlay()
+    {
+        nextLevelAudio.Play();
+    }
+
+    public void LevelBackgroundStop()
+    {
+     backrgroundAudio.Stop();   
+    }
 }

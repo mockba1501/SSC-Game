@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a907fa6d08c404dadbbfbb90297417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lvlButtons: []
+  TestNumberOfTurnsToPassLevel: 5
+  TEST_MODE: 0

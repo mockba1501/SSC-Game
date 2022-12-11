@@ -51,12 +51,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI levelName;
     public GameObject retryPanel;
 
+    //public AudioController audioController;
 
-    //audios
-    public AudioSource cancelAudio;
-    public AudioSource fixBuildingAudio;
-    public AudioSource nextTurnAudio;
-    public AudioSource placeBuildingAudio;
+  
 
 
     void Awake()
@@ -144,12 +141,12 @@ public class UIManager : MonoBehaviour
 
     public void PlaceButtonPressed(){
         GridBuilding.gridBuilding.TryToPlaceBuilding();
-        placeBuildingAudio.Play();
+        AudioController.audioController.PlaceBuildingPlay();
     }
 
     public void CancelPlacementButtonPressed(){
         GridBuilding.gridBuilding.CancelPlacement();
-        cancelAudio.Play();
+        AudioController.audioController.CancelButtonPlay();
     }
 
     public bool ShowPlaceButton(){
@@ -230,7 +227,7 @@ public class UIManager : MonoBehaviour
         LevelManager.Instance.UpdateKeys();
 
 
-        nextTurnAudio.Play();
+        AudioController.audioController.NextTurnPlay();
 
         // if (LevelManager.Instance.IsLevelFinished())
         // {
@@ -249,7 +246,11 @@ public class UIManager : MonoBehaviour
         if (LevelManager.Instance.IsLevelFinished())
         {
             if (!LevelManager.Instance.IsLastLevel())
-                levelCompletedPanel.SetActive(true);
+            {     
+               levelCompletedPanel.SetActive(true);
+                AudioController.audioController.LevelBackgroundStop();
+                AudioController.audioController.NextLevelPlay();
+            }
             else
                 gameOverPanel.SetActive(true);
         }
@@ -362,7 +363,7 @@ public class UIManager : MonoBehaviour
     public void fixBuildingButtonPressed(){
         if(BuildingsManager.buildingManager.currentBuilding){
             BuildingsManager.buildingManager.currentBuilding.FixBuilding();
-            fixBuildingAudio.Play();
+            AudioController.audioController.FixBuildingPlay();
         }
     }
 }

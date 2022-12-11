@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
         sKeys.poverty = 0;
         sKeys.population= 0;
         sKeys.clean = 0;
-        Debug.LogFormat("GetTotalPopulation: number of buildings: {0}", BuildingsManager.buildingManager.buildings.Count);
+        //Debug.LogFormat("GetTotalPopulation: number of buildings: {0}", BuildingsManager.buildingManager.buildings.Count);
 
 
     }

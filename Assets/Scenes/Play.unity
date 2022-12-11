@@ -606,7 +606,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 200951627}
   m_OnClick:
     m_PersistentCalls:
@@ -2155,7 +2155,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 861836139}
   m_OnClick:
     m_PersistentCalls:
@@ -3142,8 +3142,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1202372596}
-  - component: {fileID: 1202372597}
   - component: {fileID: 1202372598}
+  - component: {fileID: 1202372597}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -3164,7 +3164,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3183,7 +3183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba3e389a55ea2948b5d2971460d9d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 
+  title: Level0
 --- !u!114 &1202372598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3196,8 +3196,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a907fa6d08c404dadbbfbb90297417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestNumberOfTurnsToPassLevel: 5
+  TestNumberOfTurnsToPassLevel: 3
   TEST_MODE: 0
+  lvlButtons:
+  - {fileID: 1414032523}
+  - {fileID: 1593044361}
+  - {fileID: 200951626}
+  - {fileID: 861836138}
+  - {fileID: 1519806355}
+  - {fileID: 1551217243}
 --- !u!1 &1299524106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3775,6 +3782,18 @@ MonoBehaviour:
           m_StringArgument: Level0
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1202372595}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1414032524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4094,7 +4113,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1519806356}
   m_OnClick:
     m_PersistentCalls:
@@ -4304,7 +4323,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1551217244}
   m_OnClick:
     m_PersistentCalls:
@@ -4438,7 +4457,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1593044362}
   m_OnClick:
     m_PersistentCalls:
@@ -4793,7 +4812,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4812,7 +4831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba3e389a55ea2948b5d2971460d9d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 
+  title: main
 --- !u!1 &1887009749
 GameObject:
   m_ObjectHideFlags: 0

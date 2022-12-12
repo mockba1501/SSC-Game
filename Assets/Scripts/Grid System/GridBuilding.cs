@@ -188,6 +188,9 @@ public class GridBuilding : MonoBehaviour
         if(buildingToBuildInstance.CanBePlaced()){
             buildingToBuildInstance.Place();
             buildingToBuildInstance = null;
+        } else
+        {
+            AudioController.audioController.CantPlaceBuildingPlay();
         }
     }
 

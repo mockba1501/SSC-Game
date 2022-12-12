@@ -142,7 +142,6 @@ public class UIManager : MonoBehaviour
 
     public void PlaceButtonPressed(){
         GridBuilding.gridBuilding.TryToPlaceBuilding();
-        AudioController.audioController.PlaceBuildingPlay();
     }
 
     public void CancelPlacementButtonPressed(){

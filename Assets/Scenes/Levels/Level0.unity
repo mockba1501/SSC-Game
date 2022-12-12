@@ -1405,6 +1405,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1049143507, guid: e6a108f36cd6cc04a8258034ac11a814, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c121233eb4824ded9dd0d6afe50192c, type: 3}
+    - target: {fileID: 1049143507, guid: e6a108f36cd6cc04a8258034ac11a814, type: 3}
       propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}

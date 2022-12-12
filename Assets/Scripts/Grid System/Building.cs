@@ -116,6 +116,7 @@ public class Building : MonoBehaviour
         BuildingsManager.buildingManager.buildings.Add(this);
 
         if(builtByPlayer){
+            AudioController.audioController.PlaceBuildingPlay();
             spriteRenderer.sprite = inConstructionSprite;
             ResourcesManager.resourcesManager.freeMoney -= price;
         }

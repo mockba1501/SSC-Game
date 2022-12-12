@@ -10,6 +10,7 @@ public class Building : MonoBehaviour
     public int minimalPopulationToBuild;
     public int taxIncome;
 
+    public SpriteRenderer spriteRenderer;
     public bool builtByPlayer = true; // If already placed on start of the level than false
     
     //KPIs for level target
@@ -43,7 +44,8 @@ public class Building : MonoBehaviour
     public int solarPanelPrice;
     public int solarPanelEletricityProduction;
     public GameObject noEletricityWarning;
-    public GameObject solarPanels;
+
+    public Sprite solarPanels;
 
 
     // Eletricity
@@ -54,11 +56,16 @@ public class Building : MonoBehaviour
 
 
     private void Awake(){
-        if(builtByPlayer){
-            this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,0.7f);
+
+        if(spriteRenderer == null){
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        finishedSprite = GetComponent<SpriteRenderer>().sprite;
+        if(builtByPlayer){
+            spriteRenderer.color = new Color(1f,1f,1f,0.7f);
+        }
+
+        finishedSprite = spriteRenderer.sprite;
     }
 
     void Start()
@@ -98,18 +105,18 @@ public class Building : MonoBehaviour
     public void FinishConstruction(){
         if(isDestroyed == false){
             constructionFinished = true;
-            GetComponent<SpriteRenderer>().sprite = finishedSprite;
+            spriteRenderer.sprite = finishedSprite;
         }
     }
 
     public void Place(){
         placed = true;
         GridBuilding.gridBuilding.TakeArea(area);
-        this.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
+        spriteRenderer.color = new Color(1f,1f,1f,1f);
         BuildingsManager.buildingManager.buildings.Add(this);
 
         if(builtByPlayer){
-            GetComponent<SpriteRenderer>().sprite = inConstructionSprite;
+            spriteRenderer.sprite = inConstructionSprite;
             ResourcesManager.resourcesManager.freeMoney -= price;
         }
     }
@@ -146,7 +153,7 @@ public class Building : MonoBehaviour
 
         ResourcesManager.resourcesManager.freeMoney -= solarPanelPrice;
         hasSolarPanels = true;
-        solarPanels.SetActive(true);
+        spriteRenderer.sprite = solarPanels;
 
         if(solarPanelEletricityProduction > electricityConsumption){
             electricityProduction += solarPanelEletricityProduction-electricityConsumption;
@@ -196,19 +203,18 @@ public class Building : MonoBehaviour
         Debug.LogFormat("Placing building {0}", name);
         placed = true;
         GridBuilding.gridBuilding.TakeArea(area);
-        this.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);        
+        spriteRenderer.color = new Color(1f, 1f, 1f, 1f);        
     }
 
     public void TransformToRuins(){
         constructionFinished = true;
         fireParticles.SetActive(true);
-        GetComponent<SpriteRenderer>().sprite = destroyedBuildingSprite;
+        spriteRenderer.sprite = destroyedBuildingSprite;
         isDestroyed = true;
         population = 0;
         electricityConsumption = 0;
         electricityProduction = 0;
         taxIncome = 0;
-        solarPanels.SetActive(false);
     }
 
     public int CalculatePriceToFix(){

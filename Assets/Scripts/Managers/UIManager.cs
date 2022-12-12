@@ -137,6 +137,7 @@ public class UIManager : MonoBehaviour
 
     public void DeleteButtonPressed(){
         BuildingsManager.buildingManager.currentBuilding.DestroyBuilding();
+        showDeleteButton = false;
     }
 
     public void PlaceButtonPressed(){
@@ -291,6 +292,11 @@ public class UIManager : MonoBehaviour
         }
 
         if(BuildingsManager.buildingManager.currentBuilding.isDestroyed || !LevelRestrictor.levelRestrictor.canBuiltSolarPanels){
+            buySolarPanelsButton.SetActive(false);
+            return;
+        }
+
+        if(building.currentHP != building.maxHP){
             buySolarPanelsButton.SetActive(false);
             return;
         }

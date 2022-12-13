@@ -262,8 +262,12 @@ public class UIManager : MonoBehaviour
         else
         {
             if (LevelManager.Instance.IsLevelFailed())
+            { 
                 retryPanel.SetActive(true);
-             
+                AudioController.audioController.LevelBackgroundStop();
+                AudioController.audioController.LevelFailedPlay();
+            }
+
         }
 
 

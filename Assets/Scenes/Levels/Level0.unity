@@ -156,10 +156,10 @@ RectTransform:
   m_Father: {fileID: 205750157}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: 1}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -20.4775, y: -9.7345}
+  m_SizeDelta: {x: -40.9549, y: -19.469}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &79068561
 CanvasRenderer:
@@ -216,8 +216,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -153.34032, y: 0, z: -171.77744, w: 9.550558}
+  m_margin: {x: 25.315567, y: 0, z: 12.519653, w: 9.550558}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -147859,8 +147859,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 262, y: -57}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 227, y: -22}
+  m_SizeDelta: {x: 80, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &759562118
 MonoBehaviour:
@@ -147938,8 +147938,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 6491e15844343092a96d151631353804, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -148680,11 +148680,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   d:
-    name: Dr Dr
+    name: 'Mayor Desire Skosana '
     sentences:
-    - asas
-    - sssa
-    - sssssss
+    - Nino, congratulations on your new role as a Smart City Manager in our lovely
+      Vendover.
+    - 'The Prime Minister wrote to me yesterday. There is a severe issue in our region,
+      as seen by the declining birthrate, which is reflected in the statistics. '
+    - The city's population was identified as a source of concern. How to increase
+      it is what I'd like you to focus on.
   dPanel: {fileID: 205750153}
 --- !u!1 &980250743
 GameObject:
@@ -148771,8 +148774,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -150581,8 +150584,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -159, y: 15}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -173.9, y: 22.3}
+  m_SizeDelta: {x: 194.0589, y: 38.1178}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1770323450
 Animator:
@@ -150641,8 +150644,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4285361569
+  m_fontColor: {r: 0.6320754, g: 0.42635277, b: 0.42635277, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -150665,7 +150668,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 3
+  m_fontStyle: 7
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

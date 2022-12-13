@@ -19,6 +19,7 @@ public class AudioController : MonoBehaviour
     public AudioSource cantPlaceBuildingAudio;
     public AudioSource nextLevelAudio;
     public AudioSource backrgroundAudio;
+    public AudioSource levelFailedAudio;
 
     private void Awake()
     {
@@ -79,5 +80,10 @@ public class AudioController : MonoBehaviour
     public void LevelBackgroundStop()
     {
      backrgroundAudio.Stop();   
+    }
+
+    public void LevelFailedPlay()
+    {
+        levelFailedAudio.Play();
     }
 }

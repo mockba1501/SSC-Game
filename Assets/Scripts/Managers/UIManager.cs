@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -89,8 +90,6 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         if(LevelRestrictor.levelRestrictor.canRemoveBuildings == false){
             showDeleteButton = false;
         }
@@ -390,5 +389,17 @@ public class UIManager : MonoBehaviour
     public void CancelBackToMenuButtonPressed(){
         confirmBackToMenuPanel.SetActive(false);
         backToMenuButton.SetActive(true);
+    }
+
+
+    public bool MouseOverUI(){
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

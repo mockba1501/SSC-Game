@@ -126,7 +126,9 @@ public class Building : MonoBehaviour
 
     public void OnMouseOver(){
         if(Input.GetMouseButtonDown(0) && placed){
-            SelectBuilding();
+            if(UIManager.uiManager.MouseOverUI() == false){
+                SelectBuilding();
+            }
         }
     }
 

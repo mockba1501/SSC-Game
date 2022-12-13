@@ -41,9 +41,6 @@ public class CameraController : MonoBehaviour
         var cameraWidth = camera.orthographicSize * 2 * (float)Screen.width / Screen.height;
         var cameraHeight = camera.orthographicSize * 2;
 
-
-        Debug.Log(w - Input.mousePosition.x);
-
         
         // Move right
         if((w - Input.mousePosition.x) <= moveCameraOffset){

@@ -24,8 +24,7 @@ public class LevelManager : MonoBehaviour
     public bool TEST_MODE;
     LevelInfo levelInfo;
 
-    public Button[] lvlButtons;
-    
+   
     public static LevelManager Instance { get; private set; }
     
 
@@ -60,14 +59,7 @@ public class LevelManager : MonoBehaviour
         sKeys.clean = 0;
         //Debug.LogFormat("GetTotalPopulation: number of buildings: {0}", BuildingsManager.buildingManager.buildings.Count);
 
-        
-       int levelAt = PlayerPrefs.GetInt("levelAt", 2); 
-
-        for (int i = 0; i < lvlButtons.Length; i++)
-        {
-            if (i + 2 > levelAt)
-                lvlButtons[i].interactable = false;
-        }
+      
     }
 
     LevelInfo GetLevelInfo()
@@ -203,7 +195,8 @@ public class LevelManager : MonoBehaviour
     public void ExitGame()
     {
         Debug.Log("Exit game");
-        Application.Quit();
+        //Application.Quit();
+        SceneManager.LoadScene("Main");
     }
 
     /// <summary>

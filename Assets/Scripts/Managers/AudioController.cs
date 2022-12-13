@@ -16,6 +16,7 @@ public class AudioController : MonoBehaviour
     public AudioSource fixBuildingAudio;
     public AudioSource nextTurnAudio;
     public AudioSource placeBuildingAudio;
+    public AudioSource cantPlaceBuildingAudio;
     public AudioSource nextLevelAudio;
     public AudioSource backrgroundAudio;
 
@@ -44,6 +45,11 @@ public class AudioController : MonoBehaviour
     public void PlaceBuildingPlay()
     {
         placeBuildingAudio.Play();
+    }
+
+    public void CantPlaceBuildingPlay()
+    {
+        cantPlaceBuildingAudio.Play();
     }
 
     public void MainMenuPlay()

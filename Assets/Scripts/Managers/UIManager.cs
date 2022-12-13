@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -50,6 +51,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI levelDescriptionText;
     public TextMeshProUGUI levelName;
     public GameObject retryPanel;
+
+
+    public GameObject backToMenuButton;
+    public GameObject confirmBackToMenuPanel;
 
     //public AudioController audioController;
 
@@ -370,5 +375,20 @@ public class UIManager : MonoBehaviour
             BuildingsManager.buildingManager.currentBuilding.FixBuilding();
             AudioController.audioController.FixBuildingPlay();
         }
+    }
+
+
+    public void GoBackToMenuButtonPressed(){
+        confirmBackToMenuPanel.SetActive(true);
+        backToMenuButton.SetActive(false);
+    }
+
+    public void ConfirmBackToMenuButtonPressed(){
+        SceneManager.LoadScene("Main");
+    }
+
+    public void CancelBackToMenuButtonPressed(){
+        confirmBackToMenuPanel.SetActive(false);
+        backToMenuButton.SetActive(true);
     }
 }

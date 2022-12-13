@@ -698,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7484173505875046809, guid: 2ed983bac751e8941adf9969183b39d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7484173505875046809, guid: 2ed983bac751e8941adf9969183b39d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -710,7 +710,7 @@ PrefabInstance:
       objectReference: {fileID: 1823927880}
     - target: {fileID: 7484173505875046809, guid: 2ed983bac751e8941adf9969183b39d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeSecneDynamic
+      value: ChangeScene
       objectReference: {fileID: 0}
     - target: {fileID: 7484173505875046809, guid: 2ed983bac751e8941adf9969183b39d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

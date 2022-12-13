@@ -129,15 +129,15 @@ public class GridBuilding : MonoBehaviour
             if(baseArray[i] == null){
                 if(ResourcesManager.resourcesManager.freeMoney >= buildingInstance.price){
                     tileArray[i] = tileBases[TileType.FreeIndicator];
-                    buildingInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1f,1f,0.7f);
+                    buildingInstance.spriteRenderer.color = new Color(1,1f,1f,0.7f);
                 }else{
                     FillTiles(tileArray, TileType.OccupiedIndicator);
 
-                    buildingInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
+                    buildingInstance.spriteRenderer.color = new Color(255f,0f,0f,0.7f);
                 }
             }else{
                 FillTiles(tileArray, TileType.OccupiedIndicator);
-                buildingInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
+                buildingInstance.spriteRenderer.color = new Color(255f,0f,0f,0.7f);
             }
         }
 

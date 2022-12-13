@@ -172,7 +172,7 @@ public class UIManager : MonoBehaviour
 
         if(building != null){
             buildingNameText.SetText(building.buildingName);
-            buildingImage.sprite = building.gameObject.GetComponent<SpriteRenderer>().sprite;
+            buildingImage.sprite = building.spriteRenderer.sprite;
 
 
             buildingAttributesText.SetText("");

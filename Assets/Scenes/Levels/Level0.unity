@@ -148642,7 +148642,7 @@ MonoBehaviour:
   buildingToBuild: {fileID: 4089894755315086872, guid: a6b1673363a5bb5ed8da28998f71ede3, type: 3}
   freeTile: {fileID: 11400000, guid: cbe6133a99d40c6d0be0431d113b1923, type: 2}
   occupiedTile: {fileID: 11400000, guid: a05f69d5ab574834690417a7e8e02656, type: 2}
-  buildingTile: {fileID: 11400000, guid: a741cabf48f52a7df88afcd1483b5612, type: 2}
+  buildingTile: {fileID: 11400000, guid: 620378c68f5aa2678b3d7c2760936b56, type: 2}
 --- !u!156049354 &1519103055
 Grid:
   m_ObjectHideFlags: 0

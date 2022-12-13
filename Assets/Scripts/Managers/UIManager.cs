@@ -121,8 +121,8 @@ public class UIManager : MonoBehaviour
         eletricProductionText.SetText("Eletric production: "+ResourcesManager.resourcesManager.GetEletricProduction().ToString()+" kw ");
         electricityConsumptionText.SetText("Eletric consumption: "+ResourcesManager.resourcesManager.GetEletricConsumption().ToString()+" kw ");
 
-        freeMoneyText.SetText("Money: "+ResourcesManager.resourcesManager.freeMoney.ToString()+"M");
-        taxIncomeText.SetText("Tax income: "+ResourcesManager.resourcesManager.GetTaxIncome().ToString()+"M/turn ");
+        freeMoneyText.SetText("Money: "+ResourcesManager.resourcesManager.freeMoney.ToString()+"$");
+        taxIncomeText.SetText("Tax income: "+ResourcesManager.resourcesManager.GetTaxIncome().ToString()+"$/turn ");
         turnNumberText.SetText("Turn: "+TurnManager.turnManager.currentTurnNumber.ToString());
         populationText.SetText("Population: "+ResourcesManager.resourcesManager.GetTotalPopulation().ToString());
 
@@ -196,7 +196,7 @@ public class UIManager : MonoBehaviour
 
 
             if(building.placed == false){
-                buildingAttributesText.SetText("Price: "+building.price+"\n\n");
+                buildingAttributesText.SetText("Price: "+building.price+"$\n\n");
                 buildingAttributesText.SetText(buildingAttributesText.text+"Turns to build: "+building.remainingTurnsToFinishConstruction+"\n\n");
             }
 
@@ -307,7 +307,7 @@ public class UIManager : MonoBehaviour
         }
 
 
-        buySolarPanelsButtonText.SetText("Buy solar panels (" + building.solarPanelPrice.ToString() + "M)");
+        buySolarPanelsButtonText.SetText("Buy solar panels (" + building.solarPanelPrice.ToString() + "$)");
         buySolarPanelsButton.SetActive(true);
 
         if (ResourcesManager.resourcesManager.freeMoney >= building.solarPanelPrice)
@@ -352,7 +352,7 @@ public class UIManager : MonoBehaviour
         // Check if building is damaged
         if(BuildingsManager.buildingManager.currentBuilding.currentHP < BuildingsManager.buildingManager.currentBuilding.maxHP){
             
-            fixBuildingButtonText.SetText("Fix building ("+BuildingsManager.buildingManager.currentBuilding.CalculatePriceToFix()+"M)");
+            fixBuildingButtonText.SetText("Fix building ("+BuildingsManager.buildingManager.currentBuilding.CalculatePriceToFix()+"$)");
             fixBuildingButton.SetActive(true);
 
             if(ResourcesManager.resourcesManager.freeMoney >= BuildingsManager.buildingManager.currentBuilding.CalculatePriceToFix()){

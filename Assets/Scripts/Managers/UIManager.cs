@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -51,6 +53,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI levelName;
     public GameObject retryPanel;
 
+
+    public GameObject backToMenuButton;
+    public GameObject confirmBackToMenuPanel;
+
     //public AudioController audioController;
 
   
@@ -84,8 +90,6 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         if(LevelRestrictor.levelRestrictor.canRemoveBuildings == false){
             showDeleteButton = false;
         }
@@ -121,8 +125,8 @@ public class UIManager : MonoBehaviour
         eletricProductionText.SetText("Eletric production: "+ResourcesManager.resourcesManager.GetEletricProduction().ToString()+" kw ");
         electricityConsumptionText.SetText("Eletric consumption: "+ResourcesManager.resourcesManager.GetEletricConsumption().ToString()+" kw ");
 
-        freeMoneyText.SetText("Money: "+ResourcesManager.resourcesManager.freeMoney.ToString()+"M");
-        taxIncomeText.SetText("Tax income: "+ResourcesManager.resourcesManager.GetTaxIncome().ToString()+"M/turn ");
+        freeMoneyText.SetText("Money: "+ResourcesManager.resourcesManager.freeMoney.ToString()+"$");
+        taxIncomeText.SetText("Tax income: "+ResourcesManager.resourcesManager.GetTaxIncome().ToString()+"$/turn ");
         turnNumberText.SetText("Turn: "+TurnManager.turnManager.currentTurnNumber.ToString());
         populationText.SetText("Population: "+ResourcesManager.resourcesManager.GetTotalPopulation().ToString());
 
@@ -172,7 +176,7 @@ public class UIManager : MonoBehaviour
 
         if(building != null){
             buildingNameText.SetText(building.buildingName);
-            buildingImage.sprite = building.gameObject.GetComponent<SpriteRenderer>().sprite;
+            buildingImage.sprite = building.spriteRenderer.sprite;
 
 
             buildingAttributesText.SetText("");
@@ -196,7 +200,7 @@ public class UIManager : MonoBehaviour
 
 
             if(building.placed == false){
-                buildingAttributesText.SetText("Price: "+building.price+"\n\n");
+                buildingAttributesText.SetText("Price: "+building.price+"$\n\n");
                 buildingAttributesText.SetText(buildingAttributesText.text+"Turns to build: "+building.remainingTurnsToFinishConstruction+"\n\n");
             }
 
@@ -257,8 +261,12 @@ public class UIManager : MonoBehaviour
         else
         {
             if (LevelManager.Instance.IsLevelFailed())
+            { 
                 retryPanel.SetActive(true);
-             
+                AudioController.audioController.LevelBackgroundStop();
+                AudioController.audioController.LevelFailedPlay();
+            }
+
         }
 
 
@@ -307,7 +315,7 @@ public class UIManager : MonoBehaviour
         }
 
 
-        buySolarPanelsButtonText.SetText("Buy solar panels (" + building.solarPanelPrice.ToString() + "M)");
+        buySolarPanelsButtonText.SetText("Buy solar panels (" + building.solarPanelPrice.ToString() + "$)");
         buySolarPanelsButton.SetActive(true);
 
         if (ResourcesManager.resourcesManager.freeMoney >= building.solarPanelPrice)
@@ -352,7 +360,7 @@ public class UIManager : MonoBehaviour
         // Check if building is damaged
         if(BuildingsManager.buildingManager.currentBuilding.currentHP < BuildingsManager.buildingManager.currentBuilding.maxHP){
             
-            fixBuildingButtonText.SetText("Fix building ("+BuildingsManager.buildingManager.currentBuilding.CalculatePriceToFix()+"M)");
+            fixBuildingButtonText.SetText("Fix building ("+BuildingsManager.buildingManager.currentBuilding.CalculatePriceToFix()+"$)");
             fixBuildingButton.SetActive(true);
 
             if(ResourcesManager.resourcesManager.freeMoney >= BuildingsManager.buildingManager.currentBuilding.CalculatePriceToFix()){
@@ -369,6 +377,33 @@ public class UIManager : MonoBehaviour
         if(BuildingsManager.buildingManager.currentBuilding){
             BuildingsManager.buildingManager.currentBuilding.FixBuilding();
             AudioController.audioController.FixBuildingPlay();
+        }
+    }
+
+
+    public void GoBackToMenuButtonPressed(){
+        confirmBackToMenuPanel.SetActive(true);
+        backToMenuButton.SetActive(false);
+    }
+
+    public void ConfirmBackToMenuButtonPressed(){
+        SceneManager.LoadScene("Main");
+    }
+
+    public void CancelBackToMenuButtonPressed(){
+        confirmBackToMenuPanel.SetActive(false);
+        backToMenuButton.SetActive(true);
+    }
+
+
+    public bool MouseOverUI(){
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

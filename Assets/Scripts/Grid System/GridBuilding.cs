@@ -49,7 +49,7 @@ public class GridBuilding : MonoBehaviour
     public void InitializeBuilding(GameObject building)
     {
         buildingToBuildInstance = Instantiate(building, CameraController.cameraController.GetComponent<Camera>().transform.position, Quaternion.identity).GetComponent<Building>();
-        BuildingIndicators(buildingToBuildInstance.transform.position, buildingToBuildInstance);
+        BuildingIndicators(CameraController.cameraController.GetComponent<Camera>().transform.position, buildingToBuildInstance);
     }
 
 
@@ -114,10 +114,6 @@ public class GridBuilding : MonoBehaviour
 
         buildingInstance.area.position = gridLayout.WorldToCell(centerPos);
 
-        if(!buildingInstance.hasClearCenter){
-            //buildingInstance.transform.position -= new Vector3(0,0.5f,0);
-        }
-
         BoundsInt buildingArea = buildingInstance.area;
 
         TileBase[] baseArray = GetTilesBlock(buildingArea, buildingsTilemap);
@@ -125,19 +121,29 @@ public class GridBuilding : MonoBehaviour
         int size = baseArray.Length;
         TileBase[] tileArray = new TileBase[size];
 
-        for(int i = 0; i < baseArray.Length; i++){
-            if(baseArray[i] == null){
-                if(ResourcesManager.resourcesManager.freeMoney >= buildingInstance.price){
-                    tileArray[i] = tileBases[TileType.FreeIndicator];
-                    buildingInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1f,1f,0.7f);
-                }else{
-                    FillTiles(tileArray, TileType.OccupiedIndicator);
 
-                    buildingInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
-                }
+
+
+        bool canBuild = true;
+
+        if(ResourcesManager.resourcesManager.freeMoney < buildingInstance.price){
+            canBuild = false;
+        }
+
+        for(int i = 0; i < baseArray.Length; i++){
+            if(baseArray[i] != null){
+                canBuild = false;
+                break;
+            }
+        }
+
+        for(int i = 0; i < baseArray.Length; i++){
+            if(canBuild){
+                tileArray[i] = tileBases[TileType.FreeIndicator];
+                buildingInstance.spriteRenderer.color = new Color(1,1f,1f,0.7f);
             }else{
                 FillTiles(tileArray, TileType.OccupiedIndicator);
-                buildingInstance.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f,0f,0f,0.7f);
+                buildingInstance.spriteRenderer.color = new Color(255f,0f,0f,0.7f);
             }
         }
 
@@ -175,9 +181,12 @@ public class GridBuilding : MonoBehaviour
 
         if(Input.GetMouseButtonUp(0))
         {
-            var clickedTile = buildingsTilemap.GetTile(mouseCell);
+            Tile clickedTile = (Tile)buildingsTilemap.GetTile(mouseCell);
 
             if(clickedTile == null){
+                UIManager.uiManager.showDeleteButton = false;
+                BuildingsManager.buildingManager.currentBuilding = null;
+            }else if( clickedTile.sprite.name == "water_isometric" || clickedTile.sprite.name == "trees" || clickedTile.sprite.name.Contains("road")){
                 UIManager.uiManager.showDeleteButton = false;
                 BuildingsManager.buildingManager.currentBuilding = null;
             }

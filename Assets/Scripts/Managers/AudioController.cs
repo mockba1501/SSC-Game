@@ -28,6 +28,12 @@ public class AudioController : MonoBehaviour
             audioController = this;
         }
     }
+
+    private void Start()
+    {
+        AudioController.audioController.SetMusiceAudioSourcesVlolume();
+        AudioController.audioController.SetSFXAudioSourcesVlolume();
+    }
     public void PlayClickAudio()
     {
         sfxForBtns.PlayOneShot(clickAudio);
@@ -37,10 +43,20 @@ public class AudioController : MonoBehaviour
     public void SetMusiceAudioSourcesVlolume()
     {
         musicSource.volume = PlayerPrefs.GetFloat(UISettingContontoller.music);
+        backrgroundAudio.volume = PlayerPrefs.GetFloat(UISettingContontoller.music);
     }
     public void SetSFXAudioSourcesVlolume()
     {
         sfxForBtns.volume = PlayerPrefs.GetFloat(UISettingContontoller.sfx);
+        placeBuildingAudio.volume = PlayerPrefs.GetFloat(UISettingContontoller.sfx);
+        cancelAudio.volume = PlayerPrefs.GetFloat(UISettingContontoller.sfx);
+        fixBuildingAudio.volume = PlayerPrefs.GetFloat(UISettingContontoller.sfx);
+        nextTurnAudio.volume = PlayerPrefs.GetFloat(UISettingContontoller.sfx);
+        cantPlaceBuildingAudio.volume = PlayerPrefs.GetFloat(UISettingContontoller.sfx);
+        nextLevelAudio.volume = PlayerPrefs.GetFloat(UISettingContontoller.sfx);
+        levelFailedAudio.volume = PlayerPrefs.GetFloat(UISettingContontoller.sfx);
+
+
     }
 
     public void PlaceBuildingPlay()

@@ -49,4 +49,5 @@ public class DialogueSystem : MonoBehaviour
     {
         animator.SetBool("isOpen", false);
     }
+
 }

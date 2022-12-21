@@ -63,6 +63,7 @@ public class UISettingContontoller : MonoBehaviour
     {
         PlayerPrefs.SetFloat(music, lvl);
         AudioController.audioController.SetMusiceAudioSourcesVlolume();
+   
     }
     public void OnChangeBrightness(float lvl)
     {

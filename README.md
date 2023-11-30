@@ -1,19 +1,13 @@
-# SSC-Game
 
-Sustainable Smart City is a Learning Game. The key goal is to teach the player about current sustainability issues.
 
 # AboutTheProject
 
-This Game is a two-month project within the Game Development Project course at Tallinn University.
+
 
 # Team
 
-* Mohammed Ockba <sup>mockba1501</sup> - Creative Director, Project Manager, Game Designer, Developer
-* Robin Chmelík <sup>Ojin13</sup> - Game Designer, Developer
-* Mat Croche <sup>mcroche611</sup> - Level Designer, Developer
-* Artyom Grigoryan <sup>RockArt13</sup> - Narrative Designer, Sound Engineer, Developer 
-* Vinayak Babu Rao <sup>vinayakbaburao</sup> - Graphic Designer, Developer
-* Moiz Asghar <sup>MoizAsghar97</sup> - Developer
+
+
 * Shireen Imran <sup>attendanceManage</sup> - Developer
 
 # Game Concept 

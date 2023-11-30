@@ -1,0 +1,734 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: data Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: data
+  m_TableCollectionNameGuidString: 4f6534a4932ca3049a11fc77423b0ecb
+  m_Entries:
+  - m_Id: 3262083871014912
+    m_Key: which one is orange ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8200299925471232
+    m_Key: which one is banana ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3261176534007808
+    m_Key: 'Vegetable '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48464745574694912
+    m_Key: Two
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47139929680773120
+    m_Key: Time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2218534467534848
+    m_Key: three
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2223489848967168
+    m_Key: ten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46462140416
+    m_Key: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2212893300621312
+    m_Key: C
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13043290318045184
+    m_Key: Sport
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1406112915783680
+    m_Key: Social
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2223083756453888
+    m_Key: Six
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47136501688696832
+    m_Key: Shapes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2223168829521920
+    m_Key: seven
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4191055249408
+    m_Key: Setting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10411112073527296
+    m_Key: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1422587156234240
+    m_Key: Problem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10418444597723136
+    m_Key: Please Enter NickName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10418556396896256
+    m_Key: Please Enter Email
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13022140141666304
+    m_Key: Place
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3165340546367488
+    m_Key: Orange
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2005370882752512
+    m_Key: One
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2223380537016320
+    m_Key: nine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10410598892044288
+    m_Key: NickName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48389849117097984
+    m_Key: Next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982258001608704
+    m_Key: Circle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982249491365888
+    m_Key: Triangle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982239609585664
+    m_Key: Oval
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982230604414976
+    m_Key: Heptagon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982190553006080
+    m_Key: Hexagon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982006741827584
+    m_Key: Nonagon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13042639202680832
+    m_Key: Nature
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1403629803929600
+    m_Key: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1405761433108480
+    m_Key: Math
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47140267292884992
+    m_Key: Logic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1400464274620416
+    m_Key: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1403993949208576
+    m_Key: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6367767969923072
+    m_Key: Grapes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3259111984332800
+    m_Key: 'Fruit '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2222223857025024
+    m_Key: Four
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2222979683188736
+    m_Key: Five
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13022326834331648
+    m_Key: Family
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10418152187625472
+    m_Key: Enter NickName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10417811366871040
+    m_Key: Enter Email
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10409197805764608
+    m_Key: Email
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13036762630455296
+    m_Key: Electricity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2223264795197440
+    m_Key: eight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47140621053067264
+    m_Key: Curreny
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47134509578846208
+    m_Key: Counting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1404863231295488
+    m_Key: Brightness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1414255683043328
+    m_Key: Behavior
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3164661551464448
+    m_Key: Banana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1405250201976832
+    m_Key: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3163341822099456
+    m_Key: Apple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13037055946522624
+    m_Key: Animal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54020280248172544
+    m_Key: Octagon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56156241862066176
+    m_Key: Please Select 1 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56159108358471680
+    m_Key: Please Select 2 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56159319319379968
+    m_Key: Please Select 3 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56159471065104384
+    m_Key: Please Select 4 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56328683272273920
+    m_Key: Please Select 5 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56328986625310720
+    m_Key: Please Select 6 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56329149896982528
+    m_Key: Please Select 7 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56329383272251392
+    m_Key: Please Select 8 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56329448531427328
+    m_Key: Please Select 9 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56329526742614016
+    m_Key: Please Select 10 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56330047729696768
+    m_Key: Please Select 11 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56330215782875136
+    m_Key: Please Select 12 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56330461082550272
+    m_Key: Please Select 13 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56330614770237440
+    m_Key: Please Select 14 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56330877442719744
+    m_Key: Please Select 15 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56334238732779520
+    m_Key: Please Select 16 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56334561358643200
+    m_Key: Please Select 17 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56334695890944000
+    m_Key: Please Select 18 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56334810630324224
+    m_Key: Please Select 19 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56334934773334016
+    m_Key: Please Select 20 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67083583081938944
+    m_Key: Eleven
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67084812436635648
+    m_Key: Twelve
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67088276583612416
+    m_Key: Thirteen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67091017204760576
+    m_Key: Fourteen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67091714595880960
+    m_Key: Fifteen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67092395067179008
+    m_Key: Sixteen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67093302278356992
+    m_Key: Seventeen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67094094146174976
+    m_Key: Eighteen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67094693612879872
+    m_Key: Nineteen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67095617760657408
+    m_Key: Twenty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71031713067687936
+    m_Key: Rhombus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71036067728318464
+    m_Key: ScaleneTriangle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71036823118274560
+    m_Key: Left# Triangle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71039124574822400
+    m_Key: Pentagon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71046483456024576
+    m_Key: Parallelogram
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71051787493171200
+    m_Key: Square
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74558606793244672
+    m_Key: Left Triangle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74571563585503232
+    m_Key: Comma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75413444628316160
+    m_Key: One O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75734376261615616
+    m_Key: Two O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75735788559269888
+    m_Key: Three O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75735857433935872
+    m_Key: Four O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75735921908776960
+    m_Key: Five O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75735992012374016
+    m_Key: Six O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75736057930055680
+    m_Key: Seven O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75736114146312192
+    m_Key: Eight O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75736164549263360
+    m_Key: Nine O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75736793862635520
+    m_Key: Ten O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75780465417256960
+    m_Key: Eleveen O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75780504101322752
+    m_Key: Twelve O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80064478587912192
+    m_Key: Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449393686577152
+    m_Key: Twenty One
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449458211749888
+    m_Key: Twenty Thre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449466004766720
+    m_Key: Twenty Three
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449466965262336
+    m_Key: Twenty Four
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449468823339008
+    m_Key: Twenty Five
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449469599285248
+    m_Key: Twenty Six
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449470526226432
+    m_Key: Twenty Seven
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449471532859392
+    m_Key: Twenty Eight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449472493355008
+    m_Key: Twenty Nine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449479179075584
+    m_Key: Thirty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449483255939072
+    m_Key: 'Thirty One
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81452931649110016
+    m_Key: Thirty Two
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453022141218816
+    m_Key: 'Thirty Three
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453095965163520
+    m_Key: Thirty Four
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453324940607488
+    m_Key: Thirty Five
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453472529776640
+    m_Key: Thirty Six
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453578385620992
+    m_Key: Thirty Seven
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453669062279168
+    m_Key: 'Thirty Eight
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453762817556480
+    m_Key: Thirty Nine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453872754458624
+    m_Key: Forty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82554998132310016
+    m_Key: Please Select 21 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555147294343168
+    m_Key: Please Select 22 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555196380282880
+    m_Key: Please Select 23 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555235336978432
+    m_Key: Please Select 24 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555334637125632
+    m_Key: Please Select 25 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555376949264384
+    m_Key: Please Select 26 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555568264052736
+    m_Key: Please Select 27 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555623230406656
+    m_Key: Please Select 28 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555681355071488
+    m_Key: Please Select 29 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555722547331072
+    m_Key: Please Select 30 ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82921011768197120
+    m_Key: Please Select Circle ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82970624747372544
+    m_Key: Please Select Triangle ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82982603650236416
+    m_Key: Please Select Oval ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82983037634871296
+    m_Key: Please Select Hexagon ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82983413712945152
+    m_Key: Please Select Nonagon ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83675216871161856
+    m_Key: Please Select 1 O'clock ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83675330532605952
+    m_Key: Please Select 2 O'clock ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83675367136296960
+    m_Key: Please Select 4 O'clock ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83675405480624128
+    m_Key: Please Select 5 O'clock ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83676432388849664
+    m_Key: Please Select 7 O'clock ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83676551708409856
+    m_Key: Please Select 10 O'clock ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83676659992756224
+    m_Key: Please Select 12 O'clock ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83723154171363328
+    m_Key: 1 Euro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83723317031993344
+    m_Key: 2 Euros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83723677071048704
+    m_Key: 5 Euros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83723924623065088
+    m_Key: 10 Euros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83724160540082176
+    m_Key: 20 Euros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83724670663917568
+    m_Key: 50 Euros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83724807570194432
+    m_Key: 100 Euros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83725143076765696
+    m_Key: 200 Euros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83725313793327104
+    m_Key: 500 Euros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83725492093190144
+    m_Key: 1000 Euros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84303222144761856
+    m_Key: Strawberry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85401557513535488
+    m_Key: Grape
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85419533453230080
+    m_Key: which one is apple ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85441259880841216
+    m_Key: Bank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85442472491876352
+    m_Key: School
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85513610676928512
+    m_Key: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85513977774997504
+    m_Key: Zoo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85562233481592832
+    m_Key: Cafe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85571718530990080
+    m_Key: which one is bank ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85571840019005440
+    m_Key: which one is cafe ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85789641300246528
+    m_Key: Carrot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85790076497035264
+    m_Key: Add
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85791964705587200
+    m_Key: 'Minus '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85792005113511936
+    m_Key: Divide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85792041121611776
+    m_Key: Multiple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85842089872195584
+    m_Key: Survey Form
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3487389372185575448
+  references:
+    version: 2
+    RefIds:
+    - rid: 3487389372185575448
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1680892696382

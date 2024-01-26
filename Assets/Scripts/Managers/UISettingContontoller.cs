@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-using UnityEngine.Localization.Settings;
-using UnityEngine.SceneManagement;
-
+ 
 public class UISettingContontoller : MonoBehaviour
 {
     ///////////
@@ -16,31 +14,21 @@ public class UISettingContontoller : MonoBehaviour
     public const string music = "music";
     public const string brightness = "brightness";
     public const string vibration = "vibration";
-    public const string lan = "language";
-    private int language = 0;
-   
     /////
 
     [Header("Setting")]
     public GameObject settingPanel;
     public TMP_Dropdown graphicsQualtiy;
-    public Button langQualtiy;
     public Slider musicLevel;
     public Slider sfxLevel;
     public Slider brightnessLevel;
     public Toggle vibrationToggle;
-
-    
-    public Sprite[] bayraklar;
-    
 
 
     public void SetDefaultSettngsPreferences()
     {
 
         graphicsQualtiy.value = PlayerPrefs.GetInt(graphics, 1);
-        language = PlayerPrefs.GetInt(lan, 0);
-
         QualitySettings.SetQualityLevel(PlayerPrefs.GetInt(graphics)+1);
         sfxLevel.value = PlayerPrefs.GetFloat(sfx, 1);
         AudioController.audioController.SetSFXAudioSourcesVlolume();
@@ -57,18 +45,11 @@ public class UISettingContontoller : MonoBehaviour
     private void Start()
     {
         SetDefaultSettngsPreferences();
-      
-  
-    
     }
-    
-   
     
 
     public void OnChangeGraphicsQuality(int lvl)
     {
-    
-
         PlayerPrefs.SetInt(graphics, lvl);
         QualitySettings.SetQualityLevel(lvl+1);
         AudioController.audioController.PlayClickAudio();
@@ -95,20 +76,4 @@ public class UISettingContontoller : MonoBehaviour
         AudioController.audioController.PlayClickAudio();
 
     }
-
-    void onChangeLang(int lang)
-    {
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[lang];
-       //LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(lang);
-        PlayerPrefs.SetInt(lan, lang);
-        PlayerPrefs.GetInt(lan, 1);
-        Debug.Log("I am here!!");
-        SceneManager.LoadScene("Main");
-        AudioController.audioController.PlayClickAudio();
-        
-    }
-
- 
- 
 }
-

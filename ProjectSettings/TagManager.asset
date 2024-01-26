@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Floor
+  - Entrance
+  - Obstacle
+  - PuzzleButton
   layers:
   - Default
   - TransparentFX
@@ -38,7 +42,7 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: UI
     uniqueID: 2996677303
     locked: 0
   - name: Default

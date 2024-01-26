@@ -1,0 +1,734 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: data_tr
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: tr
+  m_SharedData: {fileID: 11400000, guid: 4f6534a4932ca3049a11fc77423b0ecb, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 3487389372185575450
+  m_TableData:
+  - m_Id: 46462140416
+    m_Localized: "Ba\u015Flang\u0131\xE7"
+    m_Metadata:
+      m_Items:
+      - rid: 3487389372185575450
+  - m_Id: 4191055249408
+    m_Localized: Ayarlar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1400464274620416
+    m_Localized: Dil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1403629803929600
+    m_Localized: "M\xFCzik"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1403993949208576
+    m_Localized: Grafik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1404863231295488
+    m_Localized: " Parlakl\u0131k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1405250201976832
+    m_Localized: Geri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1405761433108480
+    m_Localized: matematik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1406112915783680
+    m_Localized: Sosyal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1414255683043328
+    m_Localized: "Davran\u0131\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1422587156234240
+    m_Localized: Sorun metni
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2005370882752512
+    m_Localized: bir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2212893300621312
+    m_Localized: "\rDaire"
+    m_Metadata:
+      m_Items:
+      - rid: 3487389372185575450
+  - m_Id: 2218534467534848
+    m_Localized: "\xFC\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2222223857025024
+    m_Localized: "d\xF6rt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2222979683188736
+    m_Localized: "be\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2223083756453888
+    m_Localized: "alt\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2223168829521920
+    m_Localized: Yedi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2223264795197440
+    m_Localized: sekiz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2223380537016320
+    m_Localized: dokuz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2223489848967168
+    m_Localized: on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3163341822099456
+    m_Localized: Elma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3164661551464448
+    m_Localized: Muz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3165340546367488
+    m_Localized: Turuncu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3259111984332800
+    m_Localized: Meyve
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3261176534007808
+    m_Localized: Sebze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3262083871014912
+    m_Localized: "L\xFCtfen 1'i se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6367767969923072
+    m_Localized: "\xFCz\xFCm"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8200299925471232
+    m_Localized: 'Hangisi turuncu '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10409197805764608
+    m_Localized: e-posta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10410598892044288
+    m_Localized: Takma ad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10411112073527296
+    m_Localized: Kaydet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10417811366871040
+    m_Localized: E-posta girin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10418152187625472
+    m_Localized: Takma Ad Girin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10418444597723136
+    m_Localized: "L\xFCtfen e-posta giriniz"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10418556396896256
+    m_Localized: "L\xFCtfen Kullan\u0131c\u0131 Ad\u0131n\u0131 Girin"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13022140141666304
+    m_Localized: Yer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13022326834331648
+    m_Localized: 'Aile
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13036762630455296
+    m_Localized: Elektrik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13037055946522624
+    m_Localized: Hayvan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13042639202680832
+    m_Localized: "Do\u011Fa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13043290318045184
+    m_Localized: Spor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47134509578846208
+    m_Localized: Sayma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47136501688696832
+    m_Localized: "\u015Fekiller"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47139929680773120
+    m_Localized: Zaman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47140267292884992
+    m_Localized: "Mant\u0131k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47140621053067264
+    m_Localized: Para birimi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48389849117097984
+    m_Localized: Sonraki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48464745574694912
+    m_Localized: "\u0130ki"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982258001608704
+    m_Localized: Daire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982249491365888
+    m_Localized: "\xDC\xE7gen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982239609585664
+    m_Localized: Oval
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982230604414976
+    m_Localized: Yedigen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982190553006080
+    m_Localized: "Alt\u0131gen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 53982006741827584
+    m_Localized: Nonagon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54020280248172544
+    m_Localized: Sekizgen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56156241862066176
+    m_Localized: "Lu\u0308tfen Bir(1) say\u0131s\u0131n\u0131 sec\u0327in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56159108358471680
+    m_Localized: "Lu\u0308tfen I\u0307ki(2) say\u0131s\u0131n\u0131 sec\u0327in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56159319319379968
+    m_Localized: "L\xFCtfen \xDC\xE7(3) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56159471065104384
+    m_Localized: "L\xFCtfen D\xF6rt(4) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56328683272273920
+    m_Localized: "L\xFCtfen Be\u015F(5) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56328986625310720
+    m_Localized: "L\xFCtfen Alt\u0131(6) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56329149896982528
+    m_Localized: "L\xFCtfen Yedi(7) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56329383272251392
+    m_Localized: "L\xFCtfen Sekiz(8) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56329448531427328
+    m_Localized: "L\xFCtfen Dokuz(9) se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56329526742614016
+    m_Localized: "L\xFCtfen On(10) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56330047729696768
+    m_Localized: "L\xFCtfen on bir(11) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56330215782875136
+    m_Localized: "L\xFCtfen on iki(12) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56330461082550272
+    m_Localized: "L\xFCtfen on \xFC\xE7(13) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56330614770237440
+    m_Localized: "L\xFCtfen on d\xF6rt(14) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56330877442719744
+    m_Localized: "L\xFCtfen on be\u015F(15) say\u0131s\u0131n\u0131 se\xE7in?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56334238732779520
+    m_Localized: "L\xFCtfen on alt\u0131(16) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56334561358643200
+    m_Localized: "L\xFCtfen on yedi(17) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56334695890944000
+    m_Localized: "L\xFCtfen on sekiz(18) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56334810630324224
+    m_Localized: "L\xFCtfen on dokuz(19) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56334934773334016
+    m_Localized: "L\xFCtfen yirmi(20) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67083583081938944
+    m_Localized: On bir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67084812436635648
+    m_Localized: On iki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67088276583612416
+    m_Localized: "On \xFC\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67091017204760576
+    m_Localized: "On d\xF6rt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67091714595880960
+    m_Localized: "On be\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67092395067179008
+    m_Localized: "On alt\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67093302278356992
+    m_Localized: On yedi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67094094146174976
+    m_Localized: On sekiz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67094693612879872
+    m_Localized: On dokuz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67095617760657408
+    m_Localized: Yirmi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71031713067687936
+    m_Localized: "E\u015Fkenar d\xF6rtgen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71036067728318464
+    m_Localized: "E\u015Fkenar olmayan \xFC\xE7gen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71036823118274560
+    m_Localized: "Sa\u011F \xDC\xE7gen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71039124574822400
+    m_Localized: "Be\u015Fgen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71046483456024576
+    m_Localized: Paralelkenar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71051787493171200
+    m_Localized: Kare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74558606793244672
+    m_Localized: "Sol \xDC\xE7gen\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74571563585503232
+    m_Localized: "Virg\xFCl"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75413444628316160
+    m_Localized: Saat bir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75734376261615616
+    m_Localized: Saat iki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75735788559269888
+    m_Localized: "Saat \xFC\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75735857433935872
+    m_Localized: "Saat d\xF6rt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75735921908776960
+    m_Localized: Five O'clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75735992012374016
+    m_Localized: "Saat alt\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75736057930055680
+    m_Localized: Saat yedi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75736114146312192
+    m_Localized: Saat sekiz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75736164549263360
+    m_Localized: Saat dokuz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75736793862635520
+    m_Localized: Saat on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75780465417256960
+    m_Localized: Saat onbir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75780504101322752
+    m_Localized: Saat On iki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80064478587912192
+    m_Localized: Goal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449393686577152
+    m_Localized: Yirmi bir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449458211749888
+    m_Localized: Yirmi iki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449466004766720
+    m_Localized: "Yirmi \xFC\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449466965262336
+    m_Localized: "Yirmi d\xF6rt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449468823339008
+    m_Localized: "Yirmi be\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449469599285248
+    m_Localized: "Yirmi alt\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449470526226432
+    m_Localized: Yirmi yedi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449471532859392
+    m_Localized: Yirmi sekiz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449472493355008
+    m_Localized: Yirmi dokuz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449479179075584
+    m_Localized: Otuz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81449483255939072
+    m_Localized: Otuz bir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81452931649110016
+    m_Localized: Otuz iki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453022141218816
+    m_Localized: "Otuz \xFC\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453095965163520
+    m_Localized: "Otuz d\xF6rt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453324940607488
+    m_Localized: "Otuz be\u015F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453472529776640
+    m_Localized: "Otuz alt\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453578385620992
+    m_Localized: Otuz yedi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453669062279168
+    m_Localized: Otuz sekiz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453762817556480
+    m_Localized: Otuz dokuz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81453872754458624
+    m_Localized: "k\u0131rk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82554998132310016
+    m_Localized: "L\xFCtfen yirmi bir(21) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555147294343168
+    m_Localized: "L\xFCtfen yirmi iki(22) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555196380282880
+    m_Localized: "L\xFCtfen yirmi \xFC\xE7(23) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555235336978432
+    m_Localized: "L\xFCtfen yirmi d\xF6rt(24) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555334637125632
+    m_Localized: "L\xFCtfenyirmi be\u015F (25) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555376949264384
+    m_Localized: "L\xFCtfen yirmi sekiz(26) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555568264052736
+    m_Localized: "L\xFCtfen yirmi sekiz(27) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555623230406656
+    m_Localized: "L\xFCtfen yirmi sekiz(28) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555681355071488
+    m_Localized: "L\xFCtfen yirmi dokuz(29) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82555722547331072
+    m_Localized: "L\xFCtfen otuz (30) say\u0131s\u0131n\u0131 se\xE7in?  "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82921011768197120
+    m_Localized: Ekranda daire nerde?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82970624747372544
+    m_Localized: "Ekranda \xDC\xE7gen nerde?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82982603650236416
+    m_Localized: Ekranda Oval nerde?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82983037634871296
+    m_Localized: "Ekranda Alt\u0131gen nerde?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82983413712945152
+    m_Localized: Ekranda Nonagon nerde?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83675216871161856
+    m_Localized: Hangisi Saat 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83675330532605952
+    m_Localized: Hangisi Saat 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83675367136296960
+    m_Localized: Hangisi Saat 4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83675405480624128
+    m_Localized: Hangisi Saat 5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83676432388849664
+    m_Localized: Hangisi Saat 7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83676551708409856
+    m_Localized: Hangisi Saat 10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83676659992756224
+    m_Localized: Hangisi Saat 12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83723154171363328
+    m_Localized: 1 Lira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83723317031993344
+    m_Localized: 2 Lira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83723677071048704
+    m_Localized: 5 Lira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83723924623065088
+    m_Localized: 10 Lira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83724160540082176
+    m_Localized: 20 Lira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83724670663917568
+    m_Localized: 50 Lira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83724807570194432
+    m_Localized: 100 Lira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83725143076765696
+    m_Localized: 200 Lira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83725313793327104
+    m_Localized: 500 Lira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83725492093190144
+    m_Localized: 1000 Lira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84303222144761856
+    m_Localized: "\xE7ilek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85401557513535488
+    m_Localized: "\xDCz\xFCm"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85419533453230080
+    m_Localized: hangisi elma?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85441259880841216
+    m_Localized: banka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85442472491876352
+    m_Localized: Okul
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85513610676928512
+    m_Localized: "Ma\u011Faza"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85513977774997504
+    m_Localized: "Hayvanat Bah\xE7esi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85562233481592832
+    m_Localized: Kafe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85571840019005440
+    m_Localized: hangisi kafe?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85571718530990080
+    m_Localized: hangisi banka?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85789641300246528
+    m_Localized: "Havu\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85790076497035264
+    m_Localized: Eklemek
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85791964705587200
+    m_Localized: Eksi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85792005113511936
+    m_Localized: "B\xF6lmek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85792041121611776
+    m_Localized: "\xC7oklu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85842089872195584
+    m_Localized: 'Anket formu
+
+'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 3487389372185575450
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00005cd10a00000000001c5f9ddc0700
